@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/UI/MENU.unity
+    guid: 1bbbb5851ee02bd4388bee6458cba93a
+  - enabled: 1
+    path: Assets/Scenes/Credits/Credits.unity
+    guid: 07261e82d0753b64c8364b65d31c6948
+  - enabled: 1
+    path: Assets/Scenes/Levels/2D/AcrobaticsLevel.unity
+    guid: 11aaee0e438865844839a57f78f68e5f
+  - enabled: 1
+    path: Assets/Scenes/Levels/2D/BossLevel.unity
+    guid: c6bd53b22e7e51a488a9c2ca17e920bb
+  - enabled: 1
+    path: Assets/Scenes/Levels/2D/MeeleFightLevel.unity
+    guid: ca4c332954ba7c545b9bc06f095e92a6
+  - enabled: 1
+    path: Assets/Scenes/Levels/2D/RangedFightLevel.unity
+    guid: 186e7aa20b4fc314890a200734f46c1c
+  - enabled: 1
+    path: Assets/Scenes/Levels/2D/AnimationsLevel.unity
+    guid: 5ba3fa82752c3dc429122df5f6b26f5c
+  m_configObjects: {}
