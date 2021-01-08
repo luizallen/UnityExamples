@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using UnityEngine;
 
 public class LoadState : State
 {
@@ -12,10 +11,11 @@ public class LoadState : State
     IEnumerator LoadSequence()
     {
         yield return StartCoroutine(Board.instance.InitSequence(this));
-        //
-        //
-        //
         yield return null;
+
+        MapLoader.instance.LoadUnits();
+        yield return null;
+
         StateMachineController.instance.ChangeTo<RoamState>();
     }
 }

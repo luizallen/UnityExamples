@@ -1,5 +1,4 @@
-﻿using Assets.Scripts.Extensions;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class RoamState : State
 {
@@ -27,14 +26,13 @@ public class RoamState : State
             Selector.instance.spriteRenderer.sortingOrder = t.contentOrder;
             Selector.instance.transform.position = t.worldPos;
         }
-
     }
 
     void CheckNullPosition()
     {
-        if (Selector.instance.position.IsNullOrEmpty())
+        if (Selector.instance.tile == null)
         {
-            TileLogic t = Board.GetTile(new Vector3Int(-2, -6, 0));  
+            TileLogic t = Board.GetTile(new Vector3Int(-2, -6, 0));
             Selector.instance.tile = t;
             Selector.instance.spriteRenderer.sortingOrder = t.contentOrder;
             Selector.instance.transform.position = t.worldPos;

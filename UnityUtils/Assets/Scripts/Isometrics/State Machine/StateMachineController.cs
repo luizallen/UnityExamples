@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
 
 public class StateMachineController : MonoBehaviour
 {
@@ -7,20 +9,27 @@ public class StateMachineController : MonoBehaviour
     bool busy;
     public State current { get { return _current; } }
     public Transform selector;
+    [Header("ChooseActionState")]
+    public List<Image> chooseActionButtons;
+    public Image chooseActionSelection;
+
     void Awake()
     {
         instance = this;
     }
+
     void Start()
     {
         ChangeTo<LoadState>();
     }
+
     public void ChangeTo<T>() where T : State
     {
         State state = GetState<T>();
         if (_current != state)
             ChangeState(state);
     }
+
     public T GetState<T>() where T : State
     {
         T target = GetComponent<T>();
@@ -28,6 +37,7 @@ public class StateMachineController : MonoBehaviour
             target = gameObject.AddComponent<T>();
         return target;
     }
+
     protected void ChangeState(State value)
     {
         if (busy)
