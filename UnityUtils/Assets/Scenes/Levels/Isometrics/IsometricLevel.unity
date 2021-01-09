@@ -170,7 +170,8 @@ MonoBehaviour:
   - {fileID: 1082882670}
   - {fileID: 1440200689}
   - {fileID: 1350961198}
-  chooseActionSelection: {fileID: 0}
+  chooseActionSelection: {fileID: 1575343647}
+  chooseActionPanel: {fileID: 400892911}
 --- !u!1 &42619276
 GameObject:
   m_ObjectHideFlags: 0
@@ -400,8 +401,9 @@ GameObject:
   - component: {fileID: 400892908}
   - component: {fileID: 400892910}
   - component: {fileID: 400892909}
+  - component: {fileID: 400892911}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: ChooseAction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -428,7 +430,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 75.5}
+  m_AnchoredPosition: {x: 0, y: -50}
   m_SizeDelta: {x: 371.80206, y: 76.81558}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &400892909
@@ -468,6 +470,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 400892907}
   m_CullTransparentMesh: 0
+--- !u!114 &400892911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 400892907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92870143642cc7b47aadd2c83146dd43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  positions:
+  - name: Show
+    position: {x: 0, y: 53, z: 0}
+    anchorMin: {x: 0.5, y: 0}
+    anchorMax: {x: 0.5, y: 0}
+  - name: Hide
+    position: {x: 0, y: -53, z: 0}
+    anchorMin: {x: 0.5, y: 0}
+    anchorMax: {x: 0.5, y: 0}
 --- !u!1 &561266712
 GameObject:
   m_ObjectHideFlags: 0
