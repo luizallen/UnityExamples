@@ -2,11 +2,11 @@
 
 public class TileLogic
 {
-    public Vector3Int pos;
-    public Vector3 worldPos;
+    public Vector3Int Pos;
+    public Vector3 WorldPos;
     public GameObject content;
-    public Floor floor;
-    public int contentOrder;
+    public Floor Floor;
+    public int ContentOrder;
 
     //public TileType tileType;
 
@@ -14,10 +14,10 @@ public class TileLogic
 
     public TileLogic(Vector3Int cellPos, Vector3 worldPosition, Floor tempFloor)
     {
-        pos = cellPos;
-        worldPos = worldPosition;
-        floor = tempFloor;
-        contentOrder = tempFloor.contentOrder;
+        Pos = cellPos;
+        WorldPos = worldPosition;
+        Floor = tempFloor;
+        ContentOrder = tempFloor.ContentOrder;
     }
 
     public static TileLogic Create(Vector3Int cellPos, Vector3 worldPosition, Floor tempFloor)

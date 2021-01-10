@@ -2,15 +2,15 @@
 
 public class Selector : MonoBehaviour
 {
-    public static Selector instance;
-    public Vector3Int position { get { return tile.pos;  } }
-    public TileLogic tile;
+    public static Selector Instance;
+    public Vector3Int Position { get { return Tile.Pos;  } }
+    public TileLogic Tile;
     [HideInInspector]
-    public SpriteRenderer spriteRenderer;
+    public SpriteRenderer SpriteRenderer;
 
     void Awake() 
     {
-        instance = this;
-        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        Instance = this;
+        SpriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 }

@@ -2,9 +2,9 @@
 
 public class State : MonoBehaviour
 {
-    protected InputController inputs { get { return InputController.instance; } }
+    protected InputController Inputs { get { return InputController.Instance; } }
 
-    protected StateMachineController stateMachine { get { return StateMachineController.instance; } }
+    protected StateMachineController StateMachine { get { return StateMachineController.Instance; } }
 
     public virtual void Enter()
     {
@@ -19,7 +19,7 @@ public class State : MonoBehaviour
     protected void OnMoveTileSelector(object sender, object args)
     {
         Vector3Int input = (Vector3Int)args;
-        TileLogic tile = Board.GetTile(Selector.instance.position + input);
+        TileLogic tile = Board.GetTile(Selector.Instance.Position + input);
 
         if (tile != null)
         {
@@ -34,9 +34,9 @@ public class State : MonoBehaviour
 
     protected void MoveSelector(TileLogic tile)
     {
-        Selector.instance.tile = tile;
-        Selector.instance.spriteRenderer.sortingOrder = tile.contentOrder;
-        Selector.instance.transform.position = tile.worldPos;
-        stateMachine.selectedTile = tile;
+        Selector.Instance.Tile = tile;
+        Selector.Instance.SpriteRenderer.sortingOrder = tile.ContentOrder;
+        Selector.Instance.transform.position = tile.WorldPos;
+        StateMachine.SelectedTile = tile;
     }
 }

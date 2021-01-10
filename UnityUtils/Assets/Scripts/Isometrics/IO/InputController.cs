@@ -4,16 +4,16 @@ public delegate void DelegateModel(object sender, object args);
 public class InputController : MonoBehaviour
 {
 
-    float hCooldown = 0;
-    float vCooldown = 0;
-    float cooldownTimer = 0.5f;
-    public static InputController instance;
+    float _hCooldown = 0;
+    float _vCooldown = 0;
+    float _cooldownTimer = 0.5f;
+    public static InputController Instance;
     public DelegateModel OnMove;
     public DelegateModel OnFire;
 
     void Awake()
     {
-        instance = this;
+        Instance = this;
     }
 
     void Update()
@@ -24,16 +24,16 @@ public class InputController : MonoBehaviour
         Vector3Int moved = new Vector3Int(0, 0, 0);
         if (h != 0)
         {
-            moved.x = GetMoved(ref hCooldown, h);
+            moved.x = GetMoved(ref _hCooldown, h);
         }
         else
-            hCooldown = 0;
+            _hCooldown = 0;
         if (v != 0)
         {
-            moved.y = GetMoved(ref vCooldown, v);
+            moved.y = GetMoved(ref _vCooldown, v);
         }
         else
-            vCooldown = 0;
+            _vCooldown = 0;
 
         if (moved != Vector3Int.zero && OnMove != null)
         {
@@ -54,7 +54,7 @@ public class InputController : MonoBehaviour
     {
         if (Time.time > cooldownSum)
         {
-            cooldownSum += Time.time + cooldownTimer;
+            cooldownSum += Time.time + _cooldownTimer;
             return value;
         }
         return 0;

@@ -5,15 +5,15 @@ public class MoveSelectionState : State
     public override void Enter()
     {
         base.Enter();
-        inputs.OnMove += OnMoveTileSelector;
-        //inputs.OnFire += OnFire;
+        Inputs.OnMove += OnMoveTileSelector;
+        Inputs.OnFire += OnFire;
     }
 
     public override void Exit()
     {
         base.Exit();
-        inputs.OnMove -= OnMoveTileSelector;
-        //inputs.OnFire -= OnFire;
+        Inputs.OnMove -= OnMoveTileSelector;
+        Inputs.OnFire -= OnFire;
     }
 
     void OnFire(object sender, object args)
@@ -22,11 +22,11 @@ public class MoveSelectionState : State
 
         if (button == 1)
         {
-            //stateMachine.ChangeTo<MoveSequenceState>();
+            StateMachine.ChangeTo<MoveSequenceState>();
         }
         else if (button == 2)
         {
-            stateMachine.ChangeTo<ChooseActionState>();
+            StateMachine.ChangeTo<ChooseActionState>();
         }
     }
 }

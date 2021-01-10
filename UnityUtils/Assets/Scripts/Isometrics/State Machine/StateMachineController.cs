@@ -4,22 +4,24 @@ using UnityEngine.UI;
 
 public class StateMachineController : MonoBehaviour
 {
-    public static StateMachineController instance;
-    State _current;
-    bool busy;
-    public State current { get { return _current; } }
-    public Transform selector;
-    public TileLogic selectedTile;
-    public List<Unit> units;    
+    public static StateMachineController Instance;
+   
+    public State Current { get { return _current; } }
+    public Transform Selector;
+    public TileLogic SelectedTile;
+    public List<Unit> Units;    
 
     [Header("ChooseActionState")]
     public List<Image> chooseActionButtons;
     public Image chooseActionSelection;
     public PanelPositioner chooseActionPanel;
 
+    State _current;
+    bool _busy;
+
     void Awake()
     {
-        instance = this;
+        Instance = this;
     }
 
     void Start()
@@ -44,9 +46,9 @@ public class StateMachineController : MonoBehaviour
 
     protected void ChangeState(State value)
     {
-        if (busy)
+        if (_busy)
             return;
-        busy = true;
+        _busy = true;
 
         if (_current != null)
         {
@@ -57,7 +59,7 @@ public class StateMachineController : MonoBehaviour
         if (_current != null)
             _current.Enter();
 
-        busy = false;
+        _busy = false;
     }
 
 }

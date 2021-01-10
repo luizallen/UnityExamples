@@ -5,43 +5,25 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     const float MoveSpeed = 0.5f;
-    const float jumpHeight = 0.5f;
-    public bool teste;
-    public List<Vector3Int> path;
-    SpriteRenderer SR;
-    Transform jumper;
-    TileLogic tileAtual;
+    const float JumpHeight = 0.5f;
+    SpriteRenderer _sR;
+    Transform _jumper;
+    TileLogic _actualTile;
 
     void Awake()
     {
-        jumper = transform.Find("Jumper");
-        SR = GetComponentInChildren<SpriteRenderer>();
+        _jumper = transform.Find("Jumper");
+        _sR = GetComponentInChildren<SpriteRenderer>();
     }
 
-    void Update()
+    public IEnumerator Move(List<TileLogic> path)
     {
-        if (teste)
+        _actualTile = Turn.Unit.Tile;
+
+        for (int i = 0; i < path.Count; i++)
         {
-            teste = false;
-            StopAllCoroutines();
-            StartCoroutine(Move());
-        }
-    }
-
-    IEnumerator Move()
-    {
-        tileAtual = Board.GetTile(path[0]);
-        transform.position = tileAtual.worldPos;
-
-        for (int i = 1; i < path.Count; i++)
-        {
-            TileLogic to = Board.GetTile(path[i]);
-            if (to == null)
-                continue;
-
-            tileAtual.content = null;
-
-            if (tileAtual.floor != to.floor)
+            var to = path[i];
+            if (_actualTile.Floor != to.Floor)
             {
                 yield return StartCoroutine(Jump(to));
             }
@@ -54,11 +36,11 @@ public class Movement : MonoBehaviour
 
     IEnumerator Walk(TileLogic to)
     {
-        int id = LeanTween.move(transform.gameObject, to.worldPos, MoveSpeed).id;
-        tileAtual = to;
+        int id = LeanTween.move(transform.gameObject, to.WorldPos, MoveSpeed).id;
+        _actualTile = to;
 
         yield return new WaitForSeconds(MoveSpeed * 0.5f);
-        SR.sortingOrder = to.contentOrder;
+        _sR.sortingOrder = to.ContentOrder;
 
         while (LeanTween.descr(id) != null)
         {
@@ -69,12 +51,12 @@ public class Movement : MonoBehaviour
 
     IEnumerator Jump(TileLogic to)
     {
-        int id1 = LeanTween.move(transform.gameObject, to.worldPos, MoveSpeed).id;
-        LeanTween.moveLocalY(jumper.gameObject, jumpHeight, MoveSpeed * 0.5f).
+        int id1 = LeanTween.move(transform.gameObject, to.WorldPos, MoveSpeed).id;
+        LeanTween.moveLocalY(_jumper.gameObject, JumpHeight, MoveSpeed * 0.5f).
         setLoopPingPong(1).setEase(LeanTweenType.easeInOutQuad);
 
         float timerOrderUpdate = MoveSpeed;
-        if (tileAtual.floor.tilemap.tileAnchor.y > to.floor.tilemap.tileAnchor.y)
+        if (_actualTile.Floor.Tilemap.tileAnchor.y > to.Floor.Tilemap.tileAnchor.y)
         {
             timerOrderUpdate *= 0.85f;
         }
@@ -83,8 +65,8 @@ public class Movement : MonoBehaviour
             timerOrderUpdate *= 0.2f;
         }
         yield return new WaitForSeconds(timerOrderUpdate);
-        tileAtual = to;
-        SR.sortingOrder = to.contentOrder;
+        _actualTile = to;
+        _sR.sortingOrder = to.ContentOrder;
 
         while (LeanTween.descr(id1) != null)
         {

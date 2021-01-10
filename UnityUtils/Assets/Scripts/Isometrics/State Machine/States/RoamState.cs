@@ -6,26 +6,26 @@ public class RoamState : State
     public override void Enter()
     {
         base.Enter();
-        inputs.OnMove += OnMoveTileSelector;
-        inputs.OnFire += OnFire;
+        Inputs.OnMove += OnMoveTileSelector;
+        Inputs.OnFire += OnFire;
         CheckNullPosition();
     }
 
     public override void Exit()
     {
         base.Exit();
-        inputs.OnMove -= OnMoveTileSelector;
-        inputs.OnFire -= OnFire;
+        Inputs.OnMove -= OnMoveTileSelector;
+        Inputs.OnFire -= OnFire;
     }
 
     void CheckNullPosition()
     {
-        if (Selector.instance.tile == null)
+        if (Selector.Instance.Tile == null)
         {
-            TileLogic t = Board.GetTile(new Vector3Int(-2, -6, 0));
-            Selector.instance.tile = t;
-            Selector.instance.spriteRenderer.sortingOrder = t.contentOrder;
-            Selector.instance.transform.position = t.worldPos;
+            TileLogic t = Board.GetTile(new Vector3Int(1, -5, 0));
+            Selector.Instance.Tile = t;
+            Selector.Instance.SpriteRenderer.sortingOrder = t.ContentOrder;
+            Selector.Instance.transform.position = t.WorldPos;
         }
     }
 
@@ -39,7 +39,7 @@ public class RoamState : State
         }
         else if (button == 2)
         {
-            stateMachine.ChangeTo<ChooseActionState>();
+            StateMachine.ChangeTo<ChooseActionState>();
         }
     }
 }

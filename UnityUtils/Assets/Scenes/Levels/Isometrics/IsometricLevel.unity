@@ -164,7 +164,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6d25aa464340ff46b834d6f86fb75d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selector: {fileID: 171156825}
+  Selector: {fileID: 171156825}
+  Units: []
   chooseActionButtons:
   - {fileID: 364052434}
   - {fileID: 1082882670}
@@ -315,7 +316,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaac7f6074da5b040b060f6afaba099a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 0}
+  SpriteRenderer: {fileID: 0}
 --- !u!1 &364052432
 GameObject:
   m_ObjectHideFlags: 0
@@ -482,15 +483,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92870143642cc7b47aadd2c83146dd43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  positions:
-  - name: Show
-    position: {x: 0, y: 53, z: 0}
-    anchorMin: {x: 0.5, y: 0}
-    anchorMax: {x: 0.5, y: 0}
-  - name: Hide
-    position: {x: 0, y: -53, z: 0}
-    anchorMin: {x: 0.5, y: 0}
-    anchorMax: {x: 0.5, y: 0}
+  Positions:
+  - Name: Show
+    Position: {x: 0, y: 53, z: 0}
+    AnchorMin: {x: 0.5, y: 0}
+    AnchorMax: {x: 0.5, y: 0}
+  - Name: Hide
+    Position: {x: 0, y: -53, z: 0}
+    AnchorMin: {x: 0.5, y: 0}
+    AnchorMax: {x: 0.5, y: 0}
 --- !u!1 &561266712
 GameObject:
   m_ObjectHideFlags: 0
@@ -733,11 +734,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be181d2e65ebb914ea38f12e431f088f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tilemapRenderer: {fileID: 0}
-  contentOrder: 700
-  minXY: {x: -50, y: -50, z: 0}
-  maxXY: {x: 50, y: 50, z: 0}
-  tilemap: {fileID: 0}
+  TilemapRenderer: {fileID: 0}
+  ContentOrder: 700
+  MinXY: {x: -50, y: -50, z: 0}
+  MaxXY: {x: 50, y: 50, z: 0}
+  Tilemap: {fileID: 0}
 --- !u!1 &879390116
 GameObject:
   m_ObjectHideFlags: 0
@@ -797,11 +798,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9437119e25811af40b27ebc0982c6e2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floors:
+  Floors:
   - {fileID: 657127770}
   - {fileID: 1343936899}
   - {fileID: 1388036002}
-  grid: {fileID: 0}
+  Grid: {fileID: 0}
 --- !u!1 &1006871467
 GameObject:
   m_ObjectHideFlags: 0
@@ -1069,7 +1070,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca2ca2e2433733e40ab7fc6d29123bb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitPrefab: {fileID: 6639919045545294010, guid: 38d8f3957e410bb469a0eb51638ab155,
+  UnitPrefab: {fileID: 6639919045545294010, guid: 38d8f3957e410bb469a0eb51638ab155,
     type: 3}
 --- !u!4 &1230371030
 Transform:
@@ -1338,11 +1339,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be181d2e65ebb914ea38f12e431f088f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tilemapRenderer: {fileID: 0}
-  contentOrder: 500
-  minXY: {x: -50, y: -50, z: 0}
-  maxXY: {x: 50, y: 50, z: 0}
-  tilemap: {fileID: 0}
+  TilemapRenderer: {fileID: 0}
+  ContentOrder: 500
+  MinXY: {x: -50, y: -50, z: 0}
+  MaxXY: {x: 50, y: 50, z: 0}
+  Tilemap: {fileID: 0}
 --- !u!1 &1350961196
 GameObject:
   m_ObjectHideFlags: 0
@@ -1922,11 +1923,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be181d2e65ebb914ea38f12e431f088f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tilemapRenderer: {fileID: 0}
-  contentOrder: 300
-  minXY: {x: -50, y: -50, z: 0}
-  maxXY: {x: 50, y: 50, z: 0}
-  tilemap: {fileID: 0}
+  TilemapRenderer: {fileID: 0}
+  ContentOrder: 300
+  MinXY: {x: -50, y: -50, z: 0}
+  MaxXY: {x: 50, y: 50, z: 0}
+  Tilemap: {fileID: 0}
 --- !u!1 &1440200687
 GameObject:
   m_ObjectHideFlags: 0

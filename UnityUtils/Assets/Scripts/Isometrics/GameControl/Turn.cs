@@ -1,6 +1,6 @@
 ﻿public static class Turn 
 {
-    public static Unit unit;
-    public static bool hasActed;
-    public static bool hasMoved;
+    public static Unit Unit;
+    public static bool HasActed;
+    public static bool HasMoved;
 }

@@ -1,7 +1,7 @@
 ﻿[System.Serializable]
 public class Stat
 {
-    public StatEnum type;
-    public int value;
-    public float growth;
+    public StatEnum Type;
+    public int Value;
+    public float Growth;
 }

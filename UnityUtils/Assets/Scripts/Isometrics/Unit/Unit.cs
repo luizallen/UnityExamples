@@ -3,13 +3,19 @@
 public class Unit : MonoBehaviour
 {
     [HideInInspector]
-    public Stats stats;
+    public Stats Stats;
 
-    public int faction;
-    public TileLogic tile;
+    public int Faction;
+    public TileLogic Tile;
+    public int ChargeTime;
 
     void Awake()
     {
-        stats = GetComponentInChildren<Stats>();
+        Stats = GetComponentInChildren<Stats>();
+    }
+
+    public int GetStat(StatEnum stat)
+    {
+        return Stats.StatsList[(int)stat].Value;
     }
 }

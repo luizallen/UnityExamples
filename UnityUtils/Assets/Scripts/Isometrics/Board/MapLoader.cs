@@ -2,44 +2,46 @@
 
 public class MapLoader : MonoBehaviour
 {
-    public Unit unitPrefab;
+    public Unit UnitPrefab;
 
-    public static MapLoader instance;
+    public static MapLoader Instance;
 
-    GameObject holder;
+    GameObject _holder;
 
     void Awake()
     {
-        instance = this;
-        holder = new GameObject("Units Holder");
+        Instance = this;
+        _holder = new GameObject("Units Holder");
     }
 
     void Start()
     {
-        holder.transform.parent = Board.instance.transform;
+        _holder.transform.parent = Board.Instance.transform;
     }
 
     public void CreateUnits()
     {
-        var unit1 = CreateUnit(new Vector3Int(-1, -5, 0), "Player", 0);
-        var unit2 = CreateUnit(new Vector3Int(3, -5, 0), "Enemy", 1);
+        var unit1 = CreateUnit(new Vector3Int(1, -5, 0), "Player", 0);
+        var unit2 = CreateUnit(new Vector3Int(1, -4, 0), "Enemy", 1);
 
-        StateMachineController.instance.units.Add(unit1);
-        StateMachineController.instance.units.Add(unit2);
+        StateMachineController.Instance.Units.Add(unit1);
+        StateMachineController.Instance.Units.Add(unit2);
     }
 
     public Unit CreateUnit(Vector3Int pos, string name, int faction)
     {
         TileLogic tile = Board.GetTile(pos);
 
-        var unit = Instantiate(unitPrefab,
-            tile.worldPos,
-            Quaternion.identity,
-            holder.transform);
+        Debug.Log("Chegou Aqui");
 
-        unit.tile = tile;
+        var unit = Instantiate(UnitPrefab,
+            tile.WorldPos,
+            Quaternion.identity,
+            _holder.transform);
+
+        unit.Tile = tile;
         unit.name = name;
-        unit.faction = faction;
+        unit.Faction = faction;
 
         return unit;
     }

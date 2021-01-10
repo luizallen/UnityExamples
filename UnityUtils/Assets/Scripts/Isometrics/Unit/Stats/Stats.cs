@@ -3,17 +3,17 @@ using UnityEngine;
 
 public class Stats : MonoBehaviour
 {
-    public List<Stat> stats;
+    public List<Stat> StatsList;
 
     void Awake()
     {
-        stats = new List<Stat>();
+        StatsList = new List<Stat>();
 
         for (int i = 0; i < 10; i++)
         {
             Stat temp = new Stat();
-            temp.type = (StatEnum)i;
-            stats.Add(temp);
+            temp.Type = (StatEnum)i;
+            StatsList.Add(temp);
         }
     }
 }

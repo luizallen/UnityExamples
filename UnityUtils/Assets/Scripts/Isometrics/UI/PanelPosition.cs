@@ -3,9 +3,9 @@
 [System.Serializable]
 public class PanelPosition
 {
-    public string name;
-    public Vector3 position;
+    public string Name;
+    public Vector3 Position;
 
-    public Vector2 anchorMin;
-    public Vector2 anchorMax;
+    public Vector2 AnchorMin;
+    public Vector2 AnchorMax;
 }

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 
 public class LoadState : State
 {
@@ -10,23 +9,22 @@ public class LoadState : State
 
     IEnumerator LoadSequence()
     {
-        yield return StartCoroutine(Board.instance.InitSequence(this));
+        yield return StartCoroutine(Board.Instance.InitSequence(this));
         yield return null;
 
-        MapLoader.instance.CreateUnits();
+        MapLoader.Instance.CreateUnits();
         yield return null;
 
         InitialTurnOrdering();
 
-        StateMachineController.instance.ChangeTo<RoamState>();
+        StateMachineController.Instance.ChangeTo<TurnBeginState>();
     }
 
     void InitialTurnOrdering()
     {
-        int first = new Random().Next(0, stateMachine.units.Count);
-
-        Turn.hasActed = false;
-        Turn.hasMoved = false;
-        Turn.unit = stateMachine.units[first];
+        for (int i = 0; i < StateMachine.Units.Count; i++)
+        {
+            StateMachine.Units[i].ChargeTime = 100 - StateMachine.Units[i].GetStat(StatEnum.SPEED);
+        }
     }
 }

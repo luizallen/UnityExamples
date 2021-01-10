@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class PanelPositioner : MonoBehaviour
 {
-    public List<PanelPosition> positions;
-    RectTransform rect;
+    public List<PanelPosition> Positions;
+    RectTransform _rect;
 
     void Awake()
     {
-        rect = GetComponent<RectTransform>();
+        _rect = GetComponent<RectTransform>();
     }
 
     public void MoveTo(string positionName)
@@ -17,17 +17,17 @@ public class PanelPositioner : MonoBehaviour
         StopAllCoroutines();
         LeanTween.cancel(this.gameObject);
 
-        var pos = positions.Find(x => x.name == positionName);
+        var pos = Positions.Find(x => x.Name == positionName);
 
         StartCoroutine(Move(pos));
     }
 
     IEnumerator Move(PanelPosition panelPosition)
     {
-        rect.anchorMax = panelPosition.anchorMax;
-        rect.anchorMin = panelPosition.anchorMin;
+        _rect.anchorMax = panelPosition.AnchorMax;
+        _rect.anchorMin = panelPosition.AnchorMin;
 
-        int id = LeanTween.move(rect, panelPosition.position, 0.5f).id;
+        int id = LeanTween.move(_rect, panelPosition.Position, 0.5f).id;
 
         while(LeanTween.descr(id) != null)
         {

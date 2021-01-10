@@ -5,29 +5,29 @@ using UnityEngine.Tilemaps;
 public class Floor : MonoBehaviour
 {
     [HideInInspector]
-    public TilemapRenderer tilemapRenderer;
-    public int order { get { return tilemapRenderer.sortingOrder; } }
-    public int contentOrder;
-    public Vector3Int minXY;
-    public Vector3Int maxXY;
+    public TilemapRenderer TilemapRenderer;
+    public int Order { get { return TilemapRenderer.sortingOrder; } }
+    public int ContentOrder;
+    public Vector3Int MinXY;
+    public Vector3Int MaxXY;
     [HideInInspector]
-    public Tilemap tilemap;
+    public Tilemap Tilemap;
 
     void Awake()
     {
-        tilemapRenderer = this.transform.GetComponent<TilemapRenderer>();
-        tilemap = GetComponent<Tilemap>();
+        TilemapRenderer = this.transform.GetComponent<TilemapRenderer>();
+        Tilemap = GetComponent<Tilemap>();
     }
 
     public List<Vector3Int> LoadTiles()
     {
         List<Vector3Int> tiles = new List<Vector3Int>();
-        for (int i = minXY.x; i <= maxXY.x; i++)
+        for (int i = MinXY.x; i <= MaxXY.x; i++)
         {
-            for (int j = minXY.y; j <= maxXY.y; j++)
+            for (int j = MinXY.y; j <= MaxXY.y; j++)
             {
                 Vector3Int currentPos = new Vector3Int(i, j, 0);
-                if (tilemap.HasTile(currentPos))
+                if (Tilemap.HasTile(currentPos))
                 {
                     tiles.Add(currentPos);
                 }
