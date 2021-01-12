@@ -32,8 +32,6 @@ public class MapLoader : MonoBehaviour
     {
         TileLogic tile = Board.GetTile(pos);
 
-        Debug.Log("Chegou Aqui");
-
         var unit = Instantiate(UnitPrefab,
             tile.WorldPos,
             Quaternion.identity,

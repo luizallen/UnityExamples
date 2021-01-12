@@ -21,7 +21,6 @@ public class Board : MonoBehaviour
     {
         yield return StartCoroutine(LoadFloors(loadState));
         yield return null;
-        Debug.Log("Foram criados " + Tiles.Count + " tiles");
         ShadowOrdering();
         yield return null;
     }

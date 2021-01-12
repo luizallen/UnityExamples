@@ -2,22 +2,23 @@
 
 namespace Assets.Scripts.Isometrics.State_Machine.States
 {
-    public class ChooseActionState : State
+    public class ChooseActionState : UIState
     {
-        int _index;
-
         public override void Enter()
         {
             MoveSelector(Turn.Unit.Tile);
             base.Enter();
+            Index = 0;
 
-            _index = 0;
-            ChangeUISelector();
+            CurrentUISelector = StateMachine.ChooseActionSelection;
+
+            ChangeUISelector(StateMachine.ChooseActionButtons);
+            CheckActions();
 
             Inputs.OnMove += OnMove;
             Inputs.OnFire += OnFire;
 
-            StateMachine.chooseActionPanel.MoveTo("Show");
+            StateMachine.ChooseActionPanel.MoveTo("Show");
         }
 
         public override void Exit()
@@ -27,7 +28,7 @@ namespace Assets.Scripts.Isometrics.State_Machine.States
             Inputs.OnMove -= OnMove;
             Inputs.OnFire -= OnFire;
 
-            StateMachine.chooseActionPanel.MoveTo("Hide");
+            StateMachine.ChooseActionPanel.MoveTo("Hide");
         }
 
         void OnMove(object sender, object args)
@@ -36,13 +37,13 @@ namespace Assets.Scripts.Isometrics.State_Machine.States
 
             if (button == Vector3Int.left)
             {
-                _index--;
-                ChangeUISelector();
+                Index--;
+                ChangeUISelector(StateMachine.ChooseActionButtons);
             }
             else if (button == Vector3Int.right)
             {
-                _index++;
-                ChangeUISelector();
+                Index++;
+                ChangeUISelector(StateMachine.ChooseActionButtons);
             }
         }
 
@@ -60,39 +61,32 @@ namespace Assets.Scripts.Isometrics.State_Machine.States
             }
         }
 
-        void ChangeUISelector()
-        {
-            if(_index == -1)
-            {
-                _index = StateMachine.chooseActionButtons.Count - 1;
-            }else if(_index  == StateMachine.chooseActionButtons.Count)
-            {
-                _index = 0;
-            }
-
-            StateMachine.chooseActionSelection.transform.localPosition =
-                StateMachine.chooseActionButtons[_index].transform.localPosition;
-        }
-
         void ActionButtons()
         {
-            Debug.Log(_index);
-
-            switch (_index)
+            switch (Index)
             {
                 case 0:
-                    StateMachine.ChangeTo<MoveSelectionState>();
+                    if(!Turn.HasMoved)
+                        StateMachine.ChangeTo<MoveSelectionState>();
                     break;
                 case 1:
-                    //stateMachine.ChangeTo<ActionSelectState>();
-                    break;
+                    if (!Turn.HasActed)
+                        StateMachine.ChangeTo<SkillSelectionState>();
+                        break;
                 case 2:
                     //stateMachine.ChangeTo<ItemSelectState>();
                     break;
                 case 3:
-                    //stateMachine.ChangeTo<WaitState>();
+                    StateMachine.ChangeTo<TurnEndState>();
                     break;
             }
+        }
+
+        private void CheckActions()
+        {
+            PaintButton(StateMachine.ChooseActionButtons[0], Turn.HasMoved);
+            PaintButton(StateMachine.ChooseActionButtons[1], Turn.HasActed);
+            PaintButton(StateMachine.ChooseActionButtons[2], Turn.HasActed);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Assets.Scripts.Isometrics.State_Machine.States;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,8 +21,8 @@ public class MoveSequenceState : State
 
         Turn.Unit.Tile = StateMachine.SelectedTile;
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f);
         Turn.HasMoved = true;
-        StateMachine.ChangeTo<TurnEndState>();
+        StateMachine.ChangeTo<ChooseActionState>();
     }
 }

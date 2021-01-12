@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using UnityEngine;
 
 public class TurnEndState : State
 {
@@ -24,7 +25,9 @@ public class TurnEndState : State
         Turn.HasActed = Turn.HasMoved = false;
         StateMachine.Units.Remove(Turn.Unit);
         StateMachine.Units.Add(Turn.Unit);
-        yield return null;
+
+        yield return new WaitForSeconds(0.5f);
+
         StateMachine.ChangeTo<TurnBeginState>();
     }
 }

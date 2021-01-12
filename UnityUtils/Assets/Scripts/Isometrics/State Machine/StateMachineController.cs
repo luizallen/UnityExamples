@@ -12,9 +12,14 @@ public class StateMachineController : MonoBehaviour
     public List<Unit> Units;    
 
     [Header("ChooseActionState")]
-    public List<Image> chooseActionButtons;
-    public Image chooseActionSelection;
-    public PanelPositioner chooseActionPanel;
+    public List<Image> ChooseActionButtons;
+    public Image ChooseActionSelection;
+    public PanelPositioner ChooseActionPanel;
+
+    [Header("SkillSelectionState")]
+    public List<Image> SkillSelectionButtons;
+    public Image SkillSelectionSelection;
+    public PanelPositioner SkillSelectionPanel;
 
     State _current;
     bool _busy;
