@@ -20,6 +20,11 @@ public class StateMachineController : MonoBehaviour
     public List<Image> SkillSelectionButtons;
     public Image SkillSelectionSelection;
     public PanelPositioner SkillSelectionPanel;
+    public Sprite SkillSelectionBlocked;
+
+    [Header("EndPanel")]
+    public PanelPositioner EndPanel;
+    public Text EndText;
 
     State _current;
     bool _busy;

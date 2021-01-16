@@ -26,8 +26,9 @@ public class TurnEndState : State
         StateMachine.Units.Remove(Turn.Unit);
         StateMachine.Units.Add(Turn.Unit);
 
-        yield return new WaitForSeconds(0.5f);
+        CombatLog.Append(string.Format("O {0} terminou seu turno", Turn.Unit.name));
 
+        yield return new WaitForSeconds(0.5f);
         StateMachine.ChangeTo<TurnBeginState>();
     }
 }

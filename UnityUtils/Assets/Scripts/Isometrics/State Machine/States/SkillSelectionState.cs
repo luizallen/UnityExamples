@@ -1,8 +1,11 @@
 ﻿using Assets.Scripts.Isometrics.State_Machine.States;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class SkillSelectionState : UIState
 {
+    List<Skill> _skillList;
+
     public override void Enter()
     {
         base.Enter();
@@ -15,7 +18,7 @@ public class SkillSelectionState : UIState
         StateMachine.SkillSelectionPanel.MoveTo("Show");
 
         ChangeUISelector(StateMachine.SkillSelectionButtons);
-        //CheckActions();
+        CheckSkills();
     }
 
     public override void Exit()
@@ -34,7 +37,7 @@ public class SkillSelectionState : UIState
 
         if (button == 1)
         {
-            //ActionButtons();
+            ActionButtons();
         }
         else if (button == 2)
         {
@@ -58,4 +61,39 @@ public class SkillSelectionState : UIState
         }
     }
 
+    void CheckSkills()
+    {
+        //Não é recomendado para jogos dinamicos.
+        var skillBook = Turn.Unit.transform.Find("SkillBook");
+
+        _skillList = new List<Skill>();
+        _skillList.AddRange(skillBook.GetComponentsInChildren<Skill>());
+
+        for (int i = 0; i < 5; i++)
+        {
+            if (i < _skillList.Count)
+            {
+                StateMachine.SkillSelectionButtons[i].sprite = _skillList[i].Icon;
+            }
+            else
+            {
+                StateMachine.SkillSelectionButtons[i].sprite = StateMachine.SkillSelectionBlocked;
+            }
+        }
+    }
+
+    void ActionButtons()
+    {
+        if (Index >= _skillList.Count)
+            return;
+
+        var actualSkill = _skillList[Index];
+
+        if (actualSkill.CanUse())
+        {
+            CombatLog.Append(string.Format("O {0} está usando a habilidade {1}", Turn.Unit.name, actualSkill.name));
+            Turn.Skill = actualSkill;
+            StateMachine.ChangeTo<SkillTargetState>();
+        }
+    }
 }

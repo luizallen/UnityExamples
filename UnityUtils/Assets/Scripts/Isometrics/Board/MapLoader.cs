@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class MapLoader : MonoBehaviour
 {
@@ -6,12 +7,15 @@ public class MapLoader : MonoBehaviour
 
     public static MapLoader Instance;
 
+    public List<Alliance> Alliances;
+
     GameObject _holder;
 
     void Awake()
     {
         Instance = this;
         _holder = new GameObject("Units Holder");
+        CombatLog.Append("Começou a partida");
     }
 
     void Start()
@@ -41,6 +45,18 @@ public class MapLoader : MonoBehaviour
         unit.name = name;
         unit.Faction = faction;
 
+        tile.content = unit.gameObject;
+
+        unit.RandomizeStats();
+
         return unit;
+    }
+
+    void InitializeAlliances()
+    {
+        for (int i = 0; i < Alliances.Count; i++)
+        {
+            Alliances[i].Units = new List<Unit>();
+        }
     }
 }

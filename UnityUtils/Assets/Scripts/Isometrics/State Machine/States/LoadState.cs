@@ -16,15 +16,39 @@ public class LoadState : State
         yield return null;
 
         InitialTurnOrdering();
+        yield return null;
+
+        UnitAlliances();
 
         StateMachineController.Instance.ChangeTo<TurnBeginState>();
     }
 
     void InitialTurnOrdering()
     {
-        for (int i = 0; i < StateMachine.Units.Count; i++)
+        foreach (var unit in StateMachine.Units)
         {
-            StateMachine.Units[i].ChargeTime = 100 - StateMachine.Units[i].GetStat(StatEnum.SPEED);
+            unit.ChargeTime = 101 - unit.GetStat(StatEnum.SPEED);
+            unit.Active = true;
+        }
+    }
+
+    void UnitAlliances()
+    {
+        foreach (var unit in StateMachine.Units)
+        {
+            SetUnitAlliance(unit);
+        }
+    }
+
+    void SetUnitAlliance(Unit unit)
+    {
+        foreach (var alliances in MapLoader.Instance.Alliances)
+        {
+            if (alliances.Factions.Contains(unit.Faction))
+            {
+                alliances.Units.Add(unit);
+                return;
+            }
         }
     }
 }

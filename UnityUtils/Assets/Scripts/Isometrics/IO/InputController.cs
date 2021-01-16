@@ -48,6 +48,11 @@ public class InputController : MonoBehaviour
         {
             OnFire(null, 2);
         }
+
+        if (Input.GetButtonDown("ShowLog"))
+        {
+            CombatLog.ShowLog();
+        }
     }
 
     int GetMoved(ref float cooldownSum, int value)
