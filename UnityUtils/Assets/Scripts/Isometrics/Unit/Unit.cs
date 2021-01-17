@@ -9,6 +9,7 @@ public class Unit : MonoBehaviour
     public TileLogic Tile;
     public int ChargeTime;
     public bool Active;
+    public int Alliance;
 
     void Awake() => Stats = GetComponentInChildren<Stats>();
 
@@ -21,6 +22,12 @@ public class Unit : MonoBehaviour
     {
         foreach (var stats in Stats.StatsList)
         {
+            if(stats.Type == StatEnum.MOV)
+            {
+                stats.Value = Random.Range(1, 5);
+                continue;
+            }
+
             stats.Value = Random.Range(1, 300);
         }
     }

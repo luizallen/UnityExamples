@@ -46,7 +46,6 @@ public class Movement : MonoBehaviour
         {
             yield return null;
         }
-        to.content = this.gameObject;
     }
 
     IEnumerator Jump(TileLogic to)
@@ -72,6 +71,19 @@ public class Movement : MonoBehaviour
         {
             yield return null;
         }
-        to.content = this.gameObject;
+    }
+
+    public virtual bool IsValidMovement(TileLogic from, TileLogic to)
+    {
+        if (to == null
+            || to.Distance <= from.Distance + 1
+            || from.Distance + 1 > Turn.Unit.GetStat(StatEnum.MOV))
+            return false;
+
+        if (Mathf.Abs(from.Floor.Height - to.Floor.Height) > 1
+               || to.content != null)
+            return false;
+
+        return true;
     }
 }

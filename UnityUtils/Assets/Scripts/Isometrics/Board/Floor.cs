@@ -6,17 +6,22 @@ public class Floor : MonoBehaviour
 {
     [HideInInspector]
     public TilemapRenderer TilemapRenderer;
+    [HideInInspector]
+    public Tilemap Tilemap;
+    [HideInInspector]
+    public Tilemap Highlight;
+
     public int Order { get { return TilemapRenderer.sortingOrder; } }
     public int ContentOrder;
     public Vector3Int MinXY;
     public Vector3Int MaxXY;
-    [HideInInspector]
-    public Tilemap Tilemap;
+    public int Height;
 
     void Awake()
     {
         TilemapRenderer = this.transform.GetComponent<TilemapRenderer>();
         Tilemap = GetComponent<Tilemap>();
+        Highlight = transform.parent.Find("Highlight").GetComponent<Tilemap>();
     }
 
     public List<Vector3Int> LoadTiles()
@@ -35,5 +40,4 @@ public class Floor : MonoBehaviour
         }
         return tiles;
     }
-
 }

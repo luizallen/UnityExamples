@@ -8,6 +8,11 @@ public class TileLogic
     public Floor Floor;
     public int ContentOrder;
 
+    #region pathFinding
+    public TileLogic Prev;
+    public float Distance;
+    #endregion
+
     //public TileType tileType;
 
     public TileLogic() { }

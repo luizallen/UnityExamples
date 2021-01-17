@@ -47,6 +47,7 @@ public class LoadState : State
             if (alliances.Factions.Contains(unit.Faction))
             {
                 alliances.Units.Add(unit);
+                unit.Alliance = unit.Faction;
                 return;
             }
         }

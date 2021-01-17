@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class Board : MonoBehaviour
 {
@@ -9,6 +10,16 @@ public class Board : MonoBehaviour
     public static Board Instance;
     [HideInInspector]
     public Grid Grid;
+    public List<Tile> Highlights;
+
+    //Directions
+    public Vector3Int[] Directions = new Vector3Int[4]
+    {
+        Vector3Int.up,
+        Vector3Int.down,
+        Vector3Int.left,
+        Vector3Int.right,
+    };
 
     void Awake()
     {
@@ -27,15 +38,16 @@ public class Board : MonoBehaviour
 
     IEnumerator LoadFloors(LoadState loadState)
     {
-        for (int i = 0; i < Floors.Count; i++)
+        foreach (var floor in Floors)
         {
-            List<Vector3Int> floorTiles = Floors[i].LoadTiles();
+            List<Vector3Int> floorTiles = floor.LoadTiles();
             yield return null;
-            for (int j = 0; j < floorTiles.Count; j++)
-            {   
-                if (!Tiles.ContainsKey(floorTiles[j]))
+
+            foreach (var floorTile in floorTiles)
+            {
+                if (!Tiles.ContainsKey(floorTile))
                 {
-                    CreateTile(floorTiles[j], Floors[i]);
+                    CreateTile(floorTile, floor);
                 }
             }
         }
@@ -78,9 +90,75 @@ public class Board : MonoBehaviour
     }
 
     public static TileLogic GetTile(Vector3Int pos)
-    {
-        Instance.Tiles.TryGetValue(pos, out var tile);
+        => Instance.Tiles.TryGetValue(pos, out var tile) ? tile : null;
 
-        return tile;
+    public void SelectTiles(List<TileLogic> tiles, int allianceIndex)
+    {
+        foreach (var tile in tiles)
+        {
+            tile.Floor.Highlight.SetTile(tile.Pos, Highlights[allianceIndex]);
+        }
+    }
+
+    public void DeSelectTiles(List<TileLogic> tiles, int allianceIndex)
+    {
+        foreach (var tile in tiles)
+        {
+            tile.Floor.Highlight.SetTile(tile.Pos, null);
+        }
+    }
+
+    public List<TileLogic> Search(TileLogic start)
+    {
+        var tilesSearch = new List<TileLogic>();
+        var movement = Turn.Unit.GetComponent<Movement>();
+
+        tilesSearch.Add(start);
+        ClearSearch();
+
+        var checkNext = new Queue<TileLogic>();
+        var checkNow = new Queue<TileLogic>();
+
+        start.Distance = 0;
+        checkNow.Enqueue(start);
+
+        while (checkNow.Count > 0)
+        {
+            var tile = checkNow.Dequeue();
+
+            foreach (var direction in Directions)
+            {
+                var next = GetTile(tile.Pos + direction);
+
+                if (!movement.IsValidMovement(tile, next))
+                    continue;
+                
+                next.Distance = tile.Distance + 1;
+                next.Prev = tile;
+                checkNext.Enqueue(next);
+                tilesSearch.Add(next);
+            }
+
+            if (checkNow.Count == 0)
+                SwapReference(ref checkNow, ref checkNext);
+        }
+
+        return tilesSearch;
+    }
+
+    private void SwapReference(ref Queue<TileLogic> checkNow, ref Queue<TileLogic> checkNext)
+    {
+        var temp = checkNow;
+        checkNow = checkNext;
+        checkNext = temp;
+    }
+
+    void ClearSearch()
+    {
+        foreach (var tile in Tiles.Values)
+        {
+            tile.Prev = null;
+            tile.Distance = int.MaxValue;
+        }
     }
 }
