@@ -137,6 +137,8 @@ MonoBehaviour:
   Stats: {fileID: 0}
   Faction: 0
   ChargeTime: 0
+  Active: 0
+  Alliance: 0
 --- !u!1 &5901960808628741793
 GameObject:
   m_ObjectHideFlags: 0
@@ -217,7 +219,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 1
+  m_SpriteSortPoint: 0
 --- !u!1 &6385470087373023792
 GameObject:
   m_ObjectHideFlags: 0
