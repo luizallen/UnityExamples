@@ -25,8 +25,8 @@ public class MapLoader : MonoBehaviour
 
     public void CreateUnits()
     {
-        var unit1 = CreateUnit(new Vector3Int(1, -5, 0), "Player", 0);
-        var unit2 = CreateUnit(new Vector3Int(1, -4, 0), "Enemy", 1);
+        var unit1 = CreateUnit(new Vector3Int(0, -7, 0), "Player", 0);
+        var unit2 = CreateUnit(new Vector3Int(3, -7, 0), "Enemy", 1);
 
         StateMachineController.Instance.Units.Add(unit1);
         StateMachineController.Instance.Units.Add(unit2);

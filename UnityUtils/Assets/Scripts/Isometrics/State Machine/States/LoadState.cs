@@ -1,4 +1,6 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class LoadState : State
 {
@@ -19,6 +21,13 @@ public class LoadState : State
         yield return null;
 
         UnitAlliances();
+        yield return null;
+
+        var blockers = Blockers.Instance.GetBlockers();
+        yield return null;
+
+        SetBlockers(blockers);
+        yield return null;
 
         StateMachineController.Instance.ChangeTo<TurnBeginState>();
     }
@@ -50,6 +59,15 @@ public class LoadState : State
                 unit.Alliance = unit.Faction;
                 return;
             }
+        }
+    }
+
+    void SetBlockers(List<Vector3Int> blockers)
+    {
+        foreach (var pos in blockers)
+        {
+            var tileMap = Board.GetTile(pos);
+            tileMap.content = Blockers.Instance.gameObject;
         }
     }
 }
