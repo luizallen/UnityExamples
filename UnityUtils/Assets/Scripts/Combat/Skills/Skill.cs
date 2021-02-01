@@ -3,10 +3,8 @@ using UnityEngine;
 
 public class Skill : MonoBehaviour
 {
-    public int Damage;
     public int ManaCost;
     public Sprite Icon;
-    public float GotHitAnimationDelay;
 
     public bool CanUse()
     {
@@ -20,8 +18,13 @@ public class Skill : MonoBehaviour
     {
         foreach (var tileLogic in targets)
         {
-            if (tileLogic != null && tileLogic.content?.GetComponent<Unit>() != null)
-                return true;
+            if (tileLogic != null)
+            {
+                var unit = tileLogic.content?.GetComponent<Unit>();
+
+                if (unit != null && GetComponentInChildren<SkillAffects>().IsTarget(unit))
+                    return true;
+            }
         }
 
         return false;
@@ -31,30 +34,35 @@ public class Skill : MonoBehaviour
 
     public List<TileLogic> GetArea() => GetComponentInChildren<AreaOfEffect>().GetArea(Turn.Targets);
 
-    public void Effect() {
+    public int GetHitPrediction(Unit target) => GetComponentInChildren<HitRate>().Predict(target);
+
+    public int GetDamagePrediction(Unit target) => GetComponentInChildren<SkillEffects>().Predict(target);
+
+    public void Perform()
+    {
         FilterContent();
 
-        for (int i = 0; i < Turn.Targets.Count; i++)
+        foreach (var target in Turn.Targets)
         {
-            var unit = Turn.Targets[i].content.GetComponent<Unit>();
+            var unit = target.content.GetComponent<Unit>();
 
-            if (unit != null)
-            {
-                var hp = unit.GetStat(StatEnum.HP);
-
-                CombatLog.Append(string.Format("{0} estava com {1} HP, foi afetado por {2} e ficou com {3}", unit, hp, -Damage, hp - Damage));
-                unit.SetStat(StatEnum.HP, -Damage);
-
-                if (unit.Dead)
-                    unit.AnimationController.Death(GotHitAnimationDelay);
-                else
-                {
-                    unit.AnimationController.Idle();
-                    unit.AnimationController.GotHit(GotHitAnimationDelay);
-                }
-            }
+            if(unit!=null && RollToHit(unit))
+                GetComponentInChildren<SkillEffects>().Apply(unit);
         }
     }
 
-    protected void FilterContent() => Turn.Targets.RemoveAll(t => t.content == null);
+    void FilterContent() => Turn.Targets.RemoveAll(t => t.content == null);
+
+    bool RollToHit(Unit unit)
+    {
+        var hit = GetComponentInChildren<HitRate>().TryToHit(unit);
+        if (hit)
+        {
+            CombatLog.Append("Acertou");
+            return true;
+        }
+
+        CombatLog.Append("Errou");
+        return false;
+    }
 }

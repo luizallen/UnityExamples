@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public enum StatEnum 
+﻿public enum StatEnum 
 {
     HP,
     MAXHP,
@@ -12,6 +8,9 @@ public enum StatEnum
     DEF,
     MATK,
     MDEF,
+    ACC,
+    EVD,
+    RES,
     SPEED,
     MOV
 }

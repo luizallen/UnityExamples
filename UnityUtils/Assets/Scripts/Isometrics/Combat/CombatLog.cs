@@ -27,8 +27,8 @@ public static class CombatLog
         return activeAlliances > 1 ? false : true;
     }
 
-    public static void Append(string value)
-        => CombatLogs.Add(DateTime.Now.ToString("MM/dd HH:mm") + ":" + value);
+    public static void Append(string value, params object[] values)
+        => CombatLogs.Add(DateTime.Now.ToString("MM/dd HH:mm") + ":" + String.Format(value, values));
 
     public static void ShowLog()
     {

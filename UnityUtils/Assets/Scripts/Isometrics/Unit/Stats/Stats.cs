@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Stats : MonoBehaviour
@@ -15,11 +16,9 @@ public class Stats : MonoBehaviour
     {
         StatsList = new List<Stat>();
 
-        for (int i = 0; i < 10; i++)
+        foreach (StatEnum item in Enum.GetValues(typeof(StatEnum)))
         {
-            Stat temp = new Stat();
-            temp.Type = (StatEnum)i;
-            StatsList.Add(temp);
+            StatsList.Add(new Stat { Type = item });
         }
     }
 }

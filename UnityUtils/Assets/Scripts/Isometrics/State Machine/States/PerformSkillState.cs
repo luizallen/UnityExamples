@@ -17,7 +17,7 @@ public class PerformSkillState : State
         Turn.Unit.AnimationController.Idle();
         Turn.Unit.AnimationController.Attack();
 
-        Turn.Skill.Effect();
+        Turn.Skill.Perform();
         yield return null;
 
         CombatLog.CheckActive();
