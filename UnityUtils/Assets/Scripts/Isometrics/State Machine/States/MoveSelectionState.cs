@@ -10,7 +10,7 @@ public class MoveSelectionState : State
         base.Enter();
         Inputs.OnMove += OnMoveTileSelector;
         Inputs.OnFire += OnFire;
-        _tiles = Board.Instance.Search(Turn.Unit.Tile);
+        _tiles = Board.Instance.Search(Turn.Unit.Tile, Turn.Unit.GetComponent<Movement>().ValidateMovement);
         _tiles.Remove(Turn.Unit.Tile);
         Board.Instance.SelectTiles(_tiles, Turn.Unit.Alliance);
     }
@@ -20,7 +20,7 @@ public class MoveSelectionState : State
         base.Exit();
         Inputs.OnMove -= OnMoveTileSelector;
         Inputs.OnFire -= OnFire;
-        Board.Instance.DeSelectTiles(_tiles, Turn.Unit.Alliance);
+        Board.Instance.DeSelectTiles(_tiles);
     }
 
     void OnFire(object sender, object args)

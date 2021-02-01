@@ -5,6 +5,12 @@ public class Stats : MonoBehaviour
 {
     public List<Stat> StatsList;
 
+    public int this[StatEnum s]
+    {
+        get { return StatsList[(int)s].Value; }
+        set { StatsList[(int)s].Value = value; ; }
+    }
+
     void Awake()
     {
         StatsList = new List<Stat>();

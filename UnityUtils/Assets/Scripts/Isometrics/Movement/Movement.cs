@@ -19,19 +19,27 @@ public class Movement : MonoBehaviour
     public IEnumerator Move(List<TileLogic> path)
     {
         _actualTile = Turn.Unit.Tile;
+        _actualTile.content = null;
 
         for (int i = 0; i < path.Count; i++)
         {
             var to = path[i];
+
+            Turn.Unit.Direction = _actualTile.GetDirection(to);
+            
             if (_actualTile.Floor != to.Floor)
             {
-                yield return StartCoroutine(Jump(to));
+                var duration = Turn.Unit.AnimationController.Jump();
+                yield return StartCoroutine(Jump(to, duration));
             }
             else
             {
+                Turn.Unit.AnimationController.Walk();
                 yield return StartCoroutine(Walk(to));
             }
         }
+
+        Turn.Unit.AnimationController.Idle();
     }
 
     IEnumerator Walk(TileLogic to)
@@ -48,13 +56,11 @@ public class Movement : MonoBehaviour
         }
     }
 
-    IEnumerator Jump(TileLogic to)
+    IEnumerator Jump(TileLogic to, float duration)
     {
-        int id1 = LeanTween.move(transform.gameObject, to.WorldPos, MoveSpeed).id;
-        LeanTween.moveLocalY(_jumper.gameObject, JumpHeight, MoveSpeed * 0.5f).
-        setLoopPingPong(1).setEase(LeanTweenType.easeInOutQuad);
+        yield return new WaitForSeconds(0.15f);
 
-        float timerOrderUpdate = MoveSpeed;
+        float timerOrderUpdate = duration;
         if (_actualTile.Floor.Tilemap.tileAnchor.y > to.Floor.Tilemap.tileAnchor.y)
         {
             timerOrderUpdate *= 0.85f;
@@ -63,6 +69,11 @@ public class Movement : MonoBehaviour
         {
             timerOrderUpdate *= 0.2f;
         }
+
+        int id1 = LeanTween.move(transform.gameObject, to.WorldPos, duration).id;
+        LeanTween.moveLocalY(_jumper.gameObject, JumpHeight, duration * 0.5f).
+        setLoopPingPong(1).setEase(LeanTweenType.easeInOutQuad);
+
         yield return new WaitForSeconds(timerOrderUpdate);
         _actualTile = to;
         _sR.sortingOrder = to.ContentOrder;
@@ -73,15 +84,13 @@ public class Movement : MonoBehaviour
         }
     }
 
-    public virtual bool IsValidMovement(TileLogic from, TileLogic to)
+    public virtual bool ValidateMovement(TileLogic from, TileLogic to)
     {
-        if (to == null
-            || to.Distance <= from.Distance + 1
-            || from.Distance + 1 > Turn.Unit.GetStat(StatEnum.MOV))
-            return false;
+        to.Distance = from.Distance + 1;
 
-        if (Mathf.Abs(from.Floor.Height - to.Floor.Height) > 1
-               || to.content != null)
+        if (to.content != null ||
+            to.Distance > Turn.Unit.GetStat(StatEnum.MOV) ||
+            Mathf.Abs(from.Floor.Height - to.Floor.Height) > 1)
             return false;
 
         return true;

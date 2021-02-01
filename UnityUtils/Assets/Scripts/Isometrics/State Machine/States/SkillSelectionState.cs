@@ -9,6 +9,7 @@ public class SkillSelectionState : UIState
     public override void Enter()
     {
         base.Enter();
+        MoveSelector(Turn.Unit.Tile);
         Index = 0;
 
         Inputs.OnMove += OnMove;

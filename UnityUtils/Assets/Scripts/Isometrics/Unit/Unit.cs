@@ -10,19 +10,41 @@ public class Unit : MonoBehaviour
     public int ChargeTime;
     public bool Active;
     public int Alliance;
+    public string SpriteModel;
+    public char Direction = 'S';
 
-    void Awake() => Stats = GetComponentInChildren<Stats>();
+    public AnimationController AnimationController;
+
+    SpriteSwapper SpriteSwapper;
+
+    public bool Dead { get { return GetStat(StatEnum.HP) <= 0; } }
+
+    void Awake()
+    {
+        Stats = GetComponentInChildren<Stats>();
+        SpriteSwapper = transform.Find("Jumper/Sprite").GetComponent<SpriteSwapper>();
+
+        AnimationController = GetComponent<AnimationController>();
+    }
+
+    void Start()
+    {
+        SpriteSwapper.ThisUnitSprites = SpriteLoader.holder.Find(SpriteModel).GetComponent<SpriteLoader>();
+        AnimationController.Idle();
+    }
 
     public int GetStat(StatEnum stat)
     {
-        return Stats.StatsList[(int)stat].Value;
+        return Stats[stat];
     }
+
+    public void SetStat(StatEnum stat, int value) => Stats[stat] = GetStat(stat) + value;
 
     public void RandomizeStats()
     {
         foreach (var stats in Stats.StatsList)
         {
-            if(stats.Type == StatEnum.MOV)
+            if (stats.Type == StatEnum.MOV)
             {
                 stats.Value = Random.Range(1, 5);
                 continue;
@@ -31,6 +53,4 @@ public class Unit : MonoBehaviour
             stats.Value = Random.Range(1, 300);
         }
     }
-
-    public void SetStat(StatEnum stat, int value) => Stats.StatsList[(int)stat].Value = GetStat(stat) + value;
 }

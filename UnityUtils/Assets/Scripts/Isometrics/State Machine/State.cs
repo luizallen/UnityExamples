@@ -7,6 +7,8 @@ public class State : MonoBehaviour
 
     protected StateMachineController StateMachine { get { return StateMachineController.Instance; } }
 
+    protected Board Board { get { return Board.Instance; } }
+
     public virtual void Enter()
     {
 

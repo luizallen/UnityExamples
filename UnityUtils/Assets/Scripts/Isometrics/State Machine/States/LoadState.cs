@@ -14,6 +14,9 @@ public class LoadState : State
         yield return StartCoroutine(Board.Instance.InitSequence(this));
         yield return null;
 
+        yield return LoadAnimations();
+        yield return null;
+
         MapLoader.Instance.CreateUnits();
         yield return null;
 
@@ -30,6 +33,15 @@ public class LoadState : State
         yield return null;
 
         StateMachineController.Instance.ChangeTo<TurnBeginState>();
+    }
+
+    IEnumerator LoadAnimations()
+    {
+        var loaders = SpriteLoader.holder.GetComponentsInChildren<SpriteLoader>();
+        foreach (var loader in loaders)
+        {
+            yield return loader.Load();
+        }
     }
 
     void InitialTurnOrdering()

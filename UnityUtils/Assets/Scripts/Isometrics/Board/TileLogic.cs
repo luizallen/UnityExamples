@@ -11,6 +11,7 @@ public class TileLogic
     #region pathFinding
     public TileLogic Prev;
     public float Distance;
+    public int Height { get { return Floor.Height; } }
     #endregion
 
     //public TileType tileType;
@@ -25,9 +26,19 @@ public class TileLogic
         ContentOrder = tempFloor.ContentOrder;
     }
 
-    public static TileLogic Create(Vector3Int cellPos, Vector3 worldPosition, Floor tempFloor)
+    public char GetDirection(TileLogic tileLogic) => GetDirection(tileLogic.Pos);
+
+    public char GetDirection(Vector3Int pos)
     {
-        TileLogic tileLogic = new TileLogic(cellPos, worldPosition, tempFloor);
-        return tileLogic;
+        if (Pos.y < pos.y)
+            return 'N';
+
+        if (Pos.x < pos.x)
+            return 'E';
+
+        if (Pos.y > pos.y)
+            return 'S';
+
+        return 'W';
     }
 }

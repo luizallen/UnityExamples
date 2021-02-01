@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -100,7 +101,7 @@ public class Board : MonoBehaviour
         }
     }
 
-    public void DeSelectTiles(List<TileLogic> tiles, int allianceIndex)
+    public void DeSelectTiles(List<TileLogic> tiles)
     {
         foreach (var tile in tiles)
         {
@@ -108,10 +109,9 @@ public class Board : MonoBehaviour
         }
     }
 
-    public List<TileLogic> Search(TileLogic start)
+    public List<TileLogic> Search(TileLogic start, Func<TileLogic, TileLogic, bool> searchType)
     {
         var tilesSearch = new List<TileLogic>();
-        var movement = Turn.Unit.GetComponent<Movement>();
 
         tilesSearch.Add(start);
         ClearSearch();
@@ -130,13 +130,15 @@ public class Board : MonoBehaviour
             {
                 var next = GetTile(tile.Pos + direction);
 
-                if (!movement.IsValidMovement(tile, next))
+                if (next == null || next.Distance <= tile.Distance + 1)
                     continue;
                 
-                next.Distance = tile.Distance + 1;
-                next.Prev = tile;
-                checkNext.Enqueue(next);
-                tilesSearch.Add(next);
+                if(searchType(tile, next))
+                {
+                    next.Prev = tile;
+                    checkNext.Enqueue(next);
+                    tilesSearch.Add(next);
+                }
             }
 
             if (checkNow.Count == 0)

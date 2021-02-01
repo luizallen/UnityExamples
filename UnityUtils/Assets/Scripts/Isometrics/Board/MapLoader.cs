@@ -25,14 +25,14 @@ public class MapLoader : MonoBehaviour
 
     public void CreateUnits()
     {
-        var unit1 = CreateUnit(new Vector3Int(0, -7, 0), "Player", 0);
-        var unit2 = CreateUnit(new Vector3Int(3, -7, 0), "Enemy", 1);
+        var unit1 = CreateUnit(new Vector3Int(0, -7, 0), "Player", 0, "Mini-Crusader");
+        var unit2 = CreateUnit(new Vector3Int(3, -7, 0), "Enemy", 1, "Mini-Crusader");
 
         StateMachineController.Instance.Units.Add(unit1);
         StateMachineController.Instance.Units.Add(unit2);
     }
 
-    public Unit CreateUnit(Vector3Int pos, string name, int faction)
+    public Unit CreateUnit(Vector3Int pos, string name, int faction, string spriteModel)
     {
         TileLogic tile = Board.GetTile(pos);
 
@@ -44,19 +44,12 @@ public class MapLoader : MonoBehaviour
         unit.Tile = tile;
         unit.name = name;
         unit.Faction = faction;
+        unit.SpriteModel = spriteModel;
 
         tile.content = unit.gameObject;
 
         unit.RandomizeStats();
 
         return unit;
-    }
-
-    void InitializeAlliances()
-    {
-        for (int i = 0; i < Alliances.Count; i++)
-        {
-            Alliances[i].Units = new List<Unit>();
-        }
     }
 }

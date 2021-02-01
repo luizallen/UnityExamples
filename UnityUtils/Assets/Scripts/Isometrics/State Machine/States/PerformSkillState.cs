@@ -12,8 +12,10 @@ public class PerformSkillState : State
     IEnumerator PerformSequence()
     {
         yield return null;
-        Turn.Targets = Turn.Skill.GetTargets();
-        yield return null;
+
+        Turn.Unit.Direction = Turn.Skill.GetComponentInChildren<SkillRange>().GetDirection();
+        Turn.Unit.AnimationController.Idle();
+        Turn.Unit.AnimationController.Attack();
 
         Turn.Skill.Effect();
         yield return null;

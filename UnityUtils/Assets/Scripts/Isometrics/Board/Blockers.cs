@@ -25,7 +25,6 @@ public class Blockers : MonoBehaviour
             if (tileMap.HasTile(pos))
             {
                 blockeds.Add(new Vector3Int(pos.x, pos.y, 0));
-                Debug.LogFormat("Tile ({0} {1}) está bloqueado", pos.x, pos.y);
             }
         }
 
