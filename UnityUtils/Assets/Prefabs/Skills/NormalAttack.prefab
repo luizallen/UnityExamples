@@ -226,10 +226,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cce19c8be8426cf45920cdd5e62399cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 5
   ManaCost: 0
   Icon: {fileID: 21300000, guid: 1260ee1329e0fb74e946b0e11ed4a533, type: 3}
-  GotHitAnimationDelay: 0.5
 --- !u!1 &9101090200031208461
 GameObject:
   m_ObjectHideFlags: 0
@@ -239,6 +237,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5576330112671825230}
+  - component: {fileID: 4994097567440274816}
   m_Layer: 0
   m_Name: Effect
   m_TagString: Untagged
@@ -260,3 +259,19 @@ Transform:
   m_Father: {fileID: 7234450820185436887}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4994097567440274816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9101090200031208461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8b68c58d3fc07a489d425a48c2951be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DamageType: 0
+  BaseDamageMultiplier: 1
+  Randomness: 0.2
+  GotHitDelay: 0.1

@@ -6,18 +6,24 @@ public class TurnEndState : State
     public override void Enter()
     {
         base.Enter();
-        StartCoroutine(AddUnitDelay());
+
+        CombatLog.CheckActive();
+
+        if (CombatLog.IsOver())
+            StateMachine.ChangeTo<MapEndState>();
+        else
+            StartCoroutine(AddUnitDelay());
     }
 
 
     IEnumerator AddUnitDelay()
     {
         Turn.Unit.ChargeTime += 300;
-        
+
         if (Turn.HasMoved)
             Turn.Unit.ChargeTime += 100;
-        
-        if(Turn.HasActed)
+
+        if (Turn.HasActed)
             Turn.Unit.ChargeTime += 100;
 
         Turn.Unit.ChargeTime -= Turn.Unit.GetStat(StatEnum.SPEED);

@@ -26,6 +26,11 @@ public class StateMachineController : MonoBehaviour
     public PanelPositioner EndPanel;
     public Text EndText;
 
+    [Header("SKill Prediction")]
+    public SkillPredictionPanel SkillPredictionPanel;
+    public CharacterPanel LeftCharacterPanel;
+    public CharacterPanel RightCharacterPanel;
+
     State _current;
     bool _busy;
 

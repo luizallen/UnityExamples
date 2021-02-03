@@ -36,7 +36,7 @@ public class Skill : MonoBehaviour
 
     public int GetHitPrediction(Unit target) => GetComponentInChildren<HitRate>().Predict(target);
 
-    public int GetDamagePrediction(Unit target) => GetComponentInChildren<SkillEffects>().Predict(target);
+    public int GetEffectPrediction(Unit target) => GetComponentInChildren<SkillEffects>().Predict(target);
 
     public void Perform()
     {

@@ -17,6 +17,7 @@ public class SkillSelectionState : UIState
 
         CurrentUISelector = StateMachine.SkillSelectionSelection;
         StateMachine.SkillSelectionPanel.MoveTo("Show");
+        StateMachine.LeftCharacterPanel.Show(Turn.Unit);
 
         ChangeUISelector(StateMachine.SkillSelectionButtons);
         CheckSkills();
@@ -42,6 +43,7 @@ public class SkillSelectionState : UIState
         }
         else if (button == 2)
         {
+            StateMachine.LeftCharacterPanel.Hide();
             StateMachine.ChangeTo<ChooseActionState>();
         }
     }

@@ -17,7 +17,7 @@ public class DamageEffect : SkillEffects
         var roll = Random.Range(1 - Randomness, 1 + Randomness);
         var finalDamage = (int)(damage * roll);
 
-        target.SetStat(StatEnum.HP, -Mathf.Clamp(finalDamage, 0, currentHp));
+        target.SetStat(StatEnum.HP, -finalDamage);
 
         CombatLog.Append("{0} estava com {1} de HP, foi afetado por {2} * {3} = {4} e ficou com {5}",
                    target.name,

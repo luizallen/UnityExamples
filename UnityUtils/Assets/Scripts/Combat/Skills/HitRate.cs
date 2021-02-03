@@ -27,7 +27,7 @@ public class HitRate : MonoBehaviour
                 break;
         }
 
-        return 50 - (missScore - hitScore); //Pode mudar a media para 75 para ter a chance maior de acerto
+        return 75 - (missScore - hitScore); //Pode mudar a media para 75 para ter a chance maior de acerto
     }
 
     public bool TryToHit(Unit target)

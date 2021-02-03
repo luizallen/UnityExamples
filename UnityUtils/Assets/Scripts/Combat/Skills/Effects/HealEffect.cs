@@ -15,7 +15,7 @@ public class HealEffect : SkillEffects
         float roll = UnityEngine.Random.Range(1 - Randomness, 1 + Randomness);
 
         var finalHeal = (int)(initial * roll);
-        target.SetStat(StatEnum.HP, Mathf.Clamp(finalHeal, 0, target.GetStat(StatEnum.HP) - currentHp));
+        target.SetStat(StatEnum.HP, finalHeal);
 
         CombatLog.Append("{0} estava com {1} de HP, foi afetado por {2} * {3} = {4} e ficou com {5}",
             target.name,

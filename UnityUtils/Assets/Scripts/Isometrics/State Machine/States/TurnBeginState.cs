@@ -16,7 +16,16 @@ public class TurnBeginState : State
         Turn.Unit = StateMachine.Units[0];
 
         yield return null;
-        StateMachine.ChangeTo<ChooseActionState>();
+        Turn.Unit.OnTurnBegin?.Invoke();
+
+        yield return null;
+        if (Turn.Unit.GetStat(StatEnum.HP) <= 0)
+        {
+            Turn.Unit.AnimationController.Death();
+            StateMachine.ChangeTo<TurnEndState>();
+        }            
+        else
+            StateMachine.ChangeTo<ChooseActionState>();
     }
 
     void BreakDraw()

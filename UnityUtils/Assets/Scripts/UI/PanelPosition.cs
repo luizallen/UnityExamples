@@ -8,4 +8,5 @@ public class PanelPosition
 
     public Vector2 AnchorMin;
     public Vector2 AnchorMax;
+    public Vector2 Pivots;
 }

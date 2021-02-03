@@ -50,8 +50,9 @@ public class MapLoader : MonoBehaviour
 
         unit.RandomizeStats();
 
-        unit.Stats[StatEnum.HP] = unit.GetStat(StatEnum.MAXHP);
-        unit.Stats[StatEnum.MP] = unit.GetStat(StatEnum.MAXMP);
+        unit.Stats[StatEnum.HP].BaseValue = unit.GetStat(StatEnum.MAXHP);
+        unit.Stats[StatEnum.MP].BaseValue = unit.GetStat(StatEnum.MAXMP);
+        unit.UpdateStat();
 
         return unit;
     }

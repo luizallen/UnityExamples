@@ -6,10 +6,9 @@ public class Stats : MonoBehaviour
 {
     public List<Stat> StatsList;
 
-    public int this[StatEnum s]
+    public Stat this[StatEnum s]
     {
-        get { return StatsList[(int)s].Value; }
-        set { StatsList[(int)s].Value = value; ; }
+        get { return StatsList[(int)s]; }
     }
 
     void Awake()

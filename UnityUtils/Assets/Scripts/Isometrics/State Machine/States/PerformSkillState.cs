@@ -18,16 +18,8 @@ public class PerformSkillState : State
         Turn.Unit.AnimationController.Attack();
 
         Turn.Skill.Perform();
-        yield return null;
-
-        CombatLog.CheckActive();
         yield return new WaitForSeconds(1f);
 
-        if (CombatLog.IsOver())
-        {
-            StateMachine.ChangeTo<MapEndState>();
-        }
- 
         StateMachine.ChangeTo<TurnEndState>();
     }
 }

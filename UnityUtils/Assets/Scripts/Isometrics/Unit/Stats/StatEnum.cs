@@ -4,6 +4,7 @@
     MAXHP,
     MP,
     MAXMP,
+    LVL,
     ATK,
     DEF,
     MATK,

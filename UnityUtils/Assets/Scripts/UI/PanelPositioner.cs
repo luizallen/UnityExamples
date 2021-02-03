@@ -26,6 +26,7 @@ public class PanelPositioner : MonoBehaviour
     {
         _rect.anchorMax = panelPosition.AnchorMax;
         _rect.anchorMin = panelPosition.AnchorMin;
+        //_rect.pivot = panelPosition.Pivots;
 
         int id = LeanTween.move(_rect, panelPosition.Position, 0.5f).id;
 

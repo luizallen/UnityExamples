@@ -1,4 +1,7 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
+
+public delegate void OnTurnBegin();
 
 public class Unit : MonoBehaviour
 {
@@ -14,6 +17,8 @@ public class Unit : MonoBehaviour
     public char Direction = 'S';
 
     public AnimationController AnimationController;
+    public OnTurnBegin OnTurnBegin;
+    public Image HealthBar;
 
     SpriteSwapper SpriteSwapper;
 
@@ -33,12 +38,21 @@ public class Unit : MonoBehaviour
         AnimationController.Idle();
     }
 
-    public int GetStat(StatEnum stat)
-    {
-        return Stats[stat];
-    }
+    public int GetStat(StatEnum stat) => Stats.StatsList[(int)stat].CurrentValue;
 
-    public void SetStat(StatEnum stat, int value) => Stats[stat] = GetStat(stat) + value;
+    public void SetStat(StatEnum stat, int value)
+    {
+        if (stat == StatEnum.HP)
+        {
+            Stats[stat].CurrentValue = ClampStat(StatEnum.MAXHP, Stats[stat].CurrentValue + value);
+            PopCombatText(value);
+            UpdateHealthBar();
+        }
+        else if (stat == StatEnum.MP)
+        {
+            Stats[stat].CurrentValue = ClampStat(StatEnum.MAXMP, Stats[stat].CurrentValue + value);
+        }
+    }
 
     public void RandomizeStats()
     {
@@ -46,11 +60,51 @@ public class Unit : MonoBehaviour
         {
             if (stats.Type == StatEnum.MOV)
             {
-                stats.Value = Random.Range(1, 5);
+                stats.BaseValue = Random.Range(1, 5);
                 continue;
             }
 
-            stats.Value = Random.Range(1, 300);
+            var temp = Random.Range(1, 100); ;
+
+            stats.BaseValue = temp;
+            stats.CurrentValue = temp;
         }
     }
+
+    public void UpdateStat(StatEnum value)
+    {
+        var toUpdate = Stats.StatsList[(int)value];
+        toUpdate.CurrentValue = Stats[value].BaseValue;
+
+        if (toUpdate.Modifiers != null)
+            toUpdate.Modifiers(toUpdate);
+    }
+
+    public void UpdateStat()
+    {
+        foreach (var stat in Stats.StatsList)
+        {
+            UpdateStat(stat.Type);
+        }
+    }
+
+    void UpdateHealthBar()
+    {
+        float maxHP = GetStat(StatEnum.MAXHP);
+        float fillValue = (Stats[StatEnum.HP].CurrentValue * 100 / maxHP) / 100;
+        HealthBar.fillAmount = fillValue;
+
+        if (fillValue >= 0.7f)
+            HealthBar.color = Color.green;
+        else if (fillValue >= 0.3f)
+            HealthBar.color = Color.yellow;
+        else
+            HealthBar.color = Color.red;
+    }
+
+    int ClampStat(StatEnum type, int value)
+        => Mathf.Clamp(value, 0, Stats[type].CurrentValue);
+
+    void PopCombatText(int value)
+        => CombatText.Instance.PopText(this, value);
 }
