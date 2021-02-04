@@ -3,10 +3,7 @@ using UnityEngine;
 
 public class LineSkillRange : SkillRange
 {
-    void Awake()
-    {
-        DirectionOriented = true;
-    }
+    public override bool IsDirectionOriented() => true;
 
     public override List<TileLogic> GetTileInRange()
     {

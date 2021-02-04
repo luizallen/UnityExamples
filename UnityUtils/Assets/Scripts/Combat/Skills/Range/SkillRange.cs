@@ -6,10 +6,10 @@ public abstract class SkillRange : MonoBehaviour
     public int Range;
     public int VerticalRange;
 
-    [HideInInspector]
-    public bool DirectionOriented;
-
     public abstract List<TileLogic> GetTileInRange();
+
+    public virtual bool IsDirectionOriented()
+        => false;
 
     public virtual char GetDirection()
     {

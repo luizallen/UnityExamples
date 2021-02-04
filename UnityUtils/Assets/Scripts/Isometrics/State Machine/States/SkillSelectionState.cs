@@ -70,7 +70,7 @@ public class SkillSelectionState : UIState
         var skillBook = Turn.Unit.transform.Find("SkillBook");
 
         _skillList = new List<Skill>();
-        _skillList.AddRange(skillBook.GetComponentsInChildren<Skill>());
+        _skillList.AddRange(skillBook.GetComponent<SkillBook>().Skills);
 
         for (int i = 0; i < 5; i++)
         {

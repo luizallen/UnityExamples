@@ -9,7 +9,7 @@ public class SkillTargetState : State
     public override void Enter()
     {
         base.Enter();
-        _directionOriented = Turn.Skill.GetComponentInChildren<SkillRange>().DirectionOriented;
+        _directionOriented = Turn.Skill.GetComponentInChildren<SkillRange>().IsDirectionOriented();
 
         if (_directionOriented)
             Inputs.OnMove += ChangeDirection;

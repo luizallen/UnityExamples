@@ -8,6 +8,9 @@ public class Unit : MonoBehaviour
     [HideInInspector]
     public Stats Stats;
 
+    [HideInInspector]
+    public AudioSource AudioSource;
+
     public int Faction;
     public TileLogic Tile;
     public int ChargeTime;
@@ -19,13 +22,14 @@ public class Unit : MonoBehaviour
     public AnimationController AnimationController;
     public OnTurnBegin OnTurnBegin;
     public Image HealthBar;
-
-    SpriteSwapper SpriteSwapper;
+   
+    public SpriteSwapper SpriteSwapper;
 
     public bool Dead { get { return GetStat(StatEnum.HP) <= 0; } }
 
     void Awake()
     {
+        AudioSource = GetComponent<AudioSource>();
         Stats = GetComponentInChildren<Stats>();
         SpriteSwapper = transform.Find("Jumper/Sprite").GetComponent<SpriteSwapper>();
 

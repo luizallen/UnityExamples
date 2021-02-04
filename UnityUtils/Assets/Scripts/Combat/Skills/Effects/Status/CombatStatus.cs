@@ -4,8 +4,6 @@ public abstract class CombatStatus : MonoBehaviour
 {
     [HideInInspector]
     public Unit Unit;
-
-    [HideInInspector]
     public int Duration;
 
     public abstract void Effect();
@@ -17,6 +15,24 @@ public abstract class CombatStatus : MonoBehaviour
         foreach (var modifier in modifiers)
         {
             modifier.Deactivate();
+        }
+    }
+
+    public void SetModifiers(int value)
+    {
+        foreach (var modifier in GetComponents<Modifier>())
+        {
+            modifier.Value = value;
+        }
+    }
+
+    public void Stack(int rcvDuration, int value)
+    {
+        Duration += rcvDuration;
+
+        foreach (var modifier in GetComponents<Modifier>())
+        {
+            modifier.Value += value;
         }
     }
 }
