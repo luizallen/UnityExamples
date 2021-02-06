@@ -383,7 +383,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e6010d3bbabb5d48804661427fc049f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Sound: {fileID: 8300000, guid: a2ae90e42daaf4723a539c25867d37fd, type: 3}
+  Sound: {fileID: 8300000, guid: e5291f744ad78c747a928c1838cc8861, type: 3}
   Delay: 0.25
 --- !u!1 &9101090200031208461
 GameObject:

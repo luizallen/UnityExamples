@@ -43,6 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d295443c292fbd4dadb992e186b0d56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DamageType: 0
   StatusNames:
   - Bleed
   - Posion
@@ -80,6 +81,8 @@ Transform:
   - {fileID: 805323570175703479}
   - {fileID: 5361057409433719356}
   - {fileID: 5498036639105026177}
+  - {fileID: 1053215400899004618}
+  - {fileID: 2379503279833311936}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -97,6 +100,51 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ManaCost: 5
   Icon: {fileID: 21300000, guid: 15d476b89ad057a49b405f881b7431ea, type: 3}
+--- !u!1 &1206635152943748738
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2379503279833311936}
+  - component: {fileID: 6786253256655868448}
+  m_Layer: 0
+  m_Name: SFX
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2379503279833311936
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1206635152943748738}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.4272981, y: -0.56011343, z: 1.0080785}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2632981031679467321}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6786253256655868448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1206635152943748738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e6010d3bbabb5d48804661427fc049f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Sound: {fileID: 8300000, guid: ec2c37b354057fc46a0ebdc8324e0dbc, type: 3}
+  Delay: 0
 --- !u!1 &1914335881865536363
 GameObject:
   m_ObjectHideFlags: 0
@@ -142,7 +190,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Range: 5
   VerticalRange: 1
-  DirectionOriented: 0
 --- !u!1 &3794741348070219938
 GameObject:
   m_ObjectHideFlags: 0
@@ -384,6 +431,55 @@ Transform:
   m_Father: {fileID: 2632981031679467321}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8106147111323034820
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1053215400899004618}
+  - component: {fileID: 3780973490542032084}
+  m_Layer: 0
+  m_Name: VFX
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1053215400899004618
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8106147111323034820}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.4272981, y: -0.56011343, z: 1.0080785}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2632981031679467321}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3780973490542032084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8106147111323034820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5e7b3be4e85cbf40bf388564e2a099c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offset: {x: 0, y: 0.14, z: 0}
+  Always: {fileID: 19800000, guid: 979632a27455af442bd2d8f36eb0ffce, type: 3}
+  OnlyOnHit: {fileID: 0}
+  Delay: 0
+  DidHit: 0
+  Target: {fileID: 0}
 --- !u!1 &8721412076773606667
 GameObject:
   m_ObjectHideFlags: 0
@@ -427,5 +523,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0014c625bb0dfeb4890442ef1d2ded0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DamageType: 1
   Randomness: 0
   BaseMultiplier: 0

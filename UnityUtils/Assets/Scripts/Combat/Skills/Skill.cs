@@ -68,6 +68,8 @@ public class Skill : MonoBehaviour
         foreach (var target in Turn.Targets)
         {
             var unit = target.content.GetComponent<Unit>();
+            if (unit == null)
+                continue;
 
             var didHit = RollToHit(unit, _primary);
             VFX(unit, didHit);

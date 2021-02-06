@@ -9,11 +9,18 @@ public class MapLoader : MonoBehaviour
 
     public List<Alliance> Alliances;
 
+    public List<Job> Jobs;
+
+    public List<UnitSerialized> SerializedUnits;
+
+    Dictionary<string, Job> _searchJobs;
+
     GameObject _holder;
 
     void Awake()
     {
         Instance = this;
+        BuildJobsDictonary();
         _holder = new GameObject("Units Holder");
         CombatLog.Append("Começou a partida");
     }
@@ -25,35 +32,43 @@ public class MapLoader : MonoBehaviour
 
     public void CreateUnits()
     {
-        var unit1 = CreateUnit(new Vector3Int(0, -7, 0), "Player", 0, "Mini-Crusader");
-        var unit2 = CreateUnit(new Vector3Int(3, -7, 0), "Enemy", 1, "Mini-Crusader");
-
-        StateMachineController.Instance.Units.Add(unit1);
-        StateMachineController.Instance.Units.Add(unit2);
+        foreach (var serializedUnit in SerializedUnits)
+        {
+            CreateUnit(serializedUnit);
+        }
     }
 
-    public Unit CreateUnit(Vector3Int pos, string name, int faction, string spriteModel)
+    public Unit CreateUnit(UnitSerialized serialized)
     {
-        TileLogic tile = Board.GetTile(pos);
+        TileLogic tile = Board.GetTile(serialized.Position);
 
         var unit = Instantiate(UnitPrefab,
-            tile.WorldPos,
-            Quaternion.identity,
-            _holder.transform);
+                                tile.WorldPos,
+                                Quaternion.identity,
+                                _holder.transform);
 
         unit.Tile = tile;
-        unit.name = name;
-        unit.Faction = faction;
-        unit.SpriteModel = spriteModel;
+        unit.name = serialized.CharacterName;
+        unit.Faction = serialized.Faction;
 
         tile.content = unit.gameObject;
 
-        unit.RandomizeStats();
+        StateMachineController.Instance.Units.Add(unit);
 
-        unit.Stats[StatEnum.HP].BaseValue = unit.GetStat(StatEnum.MAXHP);
-        unit.Stats[StatEnum.MP].BaseValue = unit.GetStat(StatEnum.MAXMP);
-        unit.UpdateStat();
+        var jobAsset = _searchJobs[serialized.Job];
+        Job.Employ(unit, jobAsset, serialized.Level);
+
+        unit.Experience = Job.GetExpCurveValue(serialized.Level);
 
         return unit;
     }
+
+    private void BuildJobsDictonary()
+    {
+        _searchJobs = new Dictionary<string, Job>();
+        foreach (var job in Jobs)
+        {
+            _searchJobs.Add(job.name, job);
+        }
+    }   
 }

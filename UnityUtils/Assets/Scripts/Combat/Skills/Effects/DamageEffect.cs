@@ -1,9 +1,8 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Combat;
+using UnityEngine;
 
 public class DamageEffect : SkillEffects
 {
-    public DameType DamageType;
-
     [Header("Not in %")]
     public float BaseDamageMultiplier = 1;
     public float Randomness = 0.2f;
@@ -28,7 +27,11 @@ public class DamageEffect : SkillEffects
                    target.GetStat(StatEnum.HP));
 
         if (target.Dead)
-            target.AnimationController.Death(GotHitDelay);
+        {
+            if(target.Active)
+                target.AnimationController.Death(GotHitDelay);
+            target.Active = false;
+        }
         else
         {
             target.AnimationController.Idle();
@@ -43,12 +46,12 @@ public class DamageEffect : SkillEffects
 
         switch (DamageType)
         {
-            case DameType.Physical:
+            case DamageType.Physical:
                 attackerScore += Turn.Unit.GetStat(StatEnum.ATK);
                 defenderScore += target.GetStat(StatEnum.DEF);
                 //bonus
                 break;
-            case DameType.Magical:
+            case DamageType.Magical:
                 attackerScore += Turn.Unit.GetStat(StatEnum.MATK);
                 defenderScore += target.GetStat(StatEnum.MDEF);
                 //bonus
@@ -61,11 +64,5 @@ public class DamageEffect : SkillEffects
         calculation = Mathf.Clamp(calculation, 0, calculation);
         return (int)calculation;
     }
-}
-
-public enum DameType
-{
-    Physical,
-    Magical,
 }
 

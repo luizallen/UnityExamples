@@ -1,0 +1,82 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64f2cbca21f670248ae931b9aba955ab, type: 3}
+  m_Name: Calculist
+  m_EditorClassIdentifier: 
+  Stats:
+  - Type: 0
+    BaseValue: 50
+    CurrentValue: 0
+    Growth: 3
+  - Type: 1
+    BaseValue: 50
+    CurrentValue: 0
+    Growth: 3
+  - Type: 2
+    BaseValue: 100
+    CurrentValue: 0
+    Growth: 10
+  - Type: 3
+    BaseValue: 100
+    CurrentValue: 0
+    Growth: 10
+  - Type: 4
+    BaseValue: 1
+    CurrentValue: 0
+    Growth: 0
+  - Type: 5
+    BaseValue: 10
+    CurrentValue: 0
+    Growth: 0.1
+  - Type: 6
+    BaseValue: 10
+    CurrentValue: 0
+    Growth: 0.1
+  - Type: 7
+    BaseValue: 50
+    CurrentValue: 0
+    Growth: 2
+  - Type: 8
+    BaseValue: 50
+    CurrentValue: 0
+    Growth: 2
+  - Type: 9
+    BaseValue: 50
+    CurrentValue: 0
+    Growth: 1
+  - Type: 10
+    BaseValue: 20
+    CurrentValue: 0
+    Growth: 1
+  - Type: 11
+    BaseValue: 50
+    CurrentValue: 0
+    Growth: 1
+  - Type: 12
+    BaseValue: 15
+    CurrentValue: 0
+    Growth: 1
+  - Type: 13
+    BaseValue: 3
+    CurrentValue: 0
+    Growth: 0
+  Skills:
+  - {fileID: 4525835982533638122, guid: f4adfa7e46026ff4d9f17cf338aac3b7, type: 3}
+  - {fileID: 4525835982533638122, guid: b4ec34372edcd6d41b5605117861587c, type: 3}
+  - {fileID: 4525835982533638122, guid: d4ba30c5c0c785b44a74483c0329b99b, type: 3}
+  - {fileID: 4525835982533638122, guid: eff4d4ceaf771d740af707831bf56a5b, type: 3}
+  - {fileID: 4525835982533638122, guid: 026e0386426ca7d478503b9d874e451e, type: 3}
+  SpriteModel: Mini-Crusader
+  AdvancesAtLevel: 999
+  AdvancesTo: []
+  Portrait: {fileID: 21300000, guid: 21a7a7d5053faed4eafbdb5de7fe1eaf, type: 3}
+  Description: Mage job description

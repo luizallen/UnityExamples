@@ -25,7 +25,10 @@ public class SkillVisualFX : MonoBehaviour
     void VFXDelay()
     {
         if (Always != null)
+        {
+            Always.gameObject.layer = 1;
             SpawnEffect(Always);
+        }
 
         if (DidHit && OnlyOnHit != null)
             SpawnEffect(OnlyOnHit);

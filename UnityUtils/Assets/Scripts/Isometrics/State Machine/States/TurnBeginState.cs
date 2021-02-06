@@ -21,11 +21,19 @@ public class TurnBeginState : State
         yield return null;
         if (Turn.Unit.GetStat(StatEnum.HP) <= 0)
         {
-            Turn.Unit.AnimationController.Death();
+            if (Turn.Unit.Active)
+                Turn.Unit.AnimationController.Death();
+
+            Turn.Unit.Active = false;
             StateMachine.ChangeTo<TurnEndState>();
-        }            
+        }
         else
-            StateMachine.ChangeTo<ChooseActionState>();
+        {
+            if (Job.CanAdvance(Turn.Unit))
+                StateMachine.ChangeTo<JobAdvanceState>();
+            else
+                StateMachine.ChangeTo<ChooseActionState>();
+        }
     }
 
     void BreakDraw()

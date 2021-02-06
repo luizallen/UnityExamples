@@ -3,25 +3,25 @@
 public class AnimationController : MonoBehaviour
 {
     Unit Unit;
-    SpriteSwapper SpriteSwapper;
+    SpriteSwapper _spriteSwapper;
 
     void Awake()
     {
         Unit = GetComponent<Unit>();
-        SpriteSwapper = transform.Find("Jumper/Sprite").GetComponent<SpriteSwapper>();
+        _spriteSwapper = transform.Find("Jumper/Sprite").GetComponent<SpriteSwapper>();
     }
 
     public void Idle() => Play("Idle");
 
     public void Walk() => Play("Walk");
 
-    public void Attack() => SpriteSwapper.PlayThenReturn("Attack" + Unit.Direction);
+    public void Attack() => _spriteSwapper.PlayThenReturn("Attack" + Unit.Direction);
 
-    public void GotHit() => SpriteSwapper.PlayThenReturn("GotHit" + Unit.Direction);
+    public void GotHit() => _spriteSwapper.PlayThenReturn("GotHit" + Unit.Direction);
 
     public void GotHit(float delay) => Invoke("GotHit", delay);
 
-    public void Death() => SpriteSwapper.PlayThenStop("Death" + Unit.Direction);
+    public void Death() => _spriteSwapper.PlayThenStop("Death" + Unit.Direction);
 
     public void Death(float delay) => Invoke("Death", delay);
 
@@ -33,7 +33,7 @@ public class AnimationController : MonoBehaviour
 
     public float GetAnimationTimer(string animeName)
     {
-        var animation = SpriteSwapper.ThisUnitSprites.GetAnimation(animeName);
+        var animation = _spriteSwapper.ThisUnitSprites.GetAnimation(animeName);
         var timePerFrame = 1 / animation.FrameRate;
 
         return animation.Frames.Count * timePerFrame;
@@ -43,7 +43,7 @@ public class AnimationController : MonoBehaviour
     {
         animName += Unit.Direction;
 
-        if (SpriteSwapper.Current.Name != animName)
-            SpriteSwapper.PlayAnimation(animName);
-    }    
+        if (_spriteSwapper.Current.Name != animName)
+            _spriteSwapper.PlayAnimation(animName);
+    }
 }

@@ -31,6 +31,9 @@ public class StateMachineController : MonoBehaviour
     public CharacterPanel LeftCharacterPanel;
     public CharacterPanel RightCharacterPanel;
 
+    [Header("JobAdvance")]
+    public JobAdvancePanel JobAdvancePanel;
+
     State _current;
     bool _busy;
 

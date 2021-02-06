@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public abstract class Modifier : MonoBehaviour
 {
@@ -21,4 +22,10 @@ public abstract class Modifier : MonoBehaviour
     }
 
     protected abstract void Modify(Stat stat);
+
+    private Sprite GetModifierIcon()
+    {
+        throw new NotImplementedException();
+    }
+
 }

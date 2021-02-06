@@ -60,5 +60,6 @@ public class CharacterPanel : MonoBehaviour
         EVD.text = "EVD: " + unit.Stats[StatEnum.EVD].CurrentValue;
         RES.text = "RES: " + unit.Stats[StatEnum.RES].CurrentValue;
         CT.text = "CT: " + unit.ChargeTime;
+        Portrait.sprite = unit.Job.Portrait;
     }
 }

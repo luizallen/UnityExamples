@@ -90,6 +90,11 @@ MonoBehaviour:
     - Mini-Crusader/DeathS
     - Mini-Crusader/DeathE
     - Mini-Crusader/DeathW
+    - Damage-Icon/Fire
+    - Damage-Icon/Earth
+    - Damage-Icon/Magic
+    - Damage-Icon/Heal
+    - Damage-Icon/Physical
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 95fce86442cb59046930db3d1c9bad34, type: 2}

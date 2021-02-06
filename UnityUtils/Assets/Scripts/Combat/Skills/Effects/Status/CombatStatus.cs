@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Combat;
+using UnityEngine;
 
 public abstract class CombatStatus : MonoBehaviour
 {

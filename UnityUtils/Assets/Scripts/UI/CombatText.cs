@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using Assets.Scripts.Combat;
+using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CombatText : MonoBehaviour
 {
@@ -15,7 +17,8 @@ public class CombatText : MonoBehaviour
         Instance = this;
     }
 
-    public void PopText(Unit unit, int value) => StartCoroutine(PopControl(unit, value));
+    public void PopText(Unit unit, int value) 
+        => StartCoroutine(PopControl(unit, value));
 
     IEnumerator PopControl(Unit unit, int value)
     {

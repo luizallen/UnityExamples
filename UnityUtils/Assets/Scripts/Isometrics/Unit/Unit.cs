@@ -12,18 +12,33 @@ public class Unit : MonoBehaviour
     public AudioSource AudioSource;
 
     public int Faction;
-    public TileLogic Tile;
     public int ChargeTime;
-    public bool Active;
     public int Alliance;
     public string SpriteModel;
     public char Direction = 'S';
+    public int Experience;
 
+    public Job Job;
+    public TileLogic Tile;
     public AnimationController AnimationController;
     public OnTurnBegin OnTurnBegin;
     public Image HealthBar;
-   
+
     public SpriteSwapper SpriteSwapper;
+
+    public bool _active;
+
+    public bool Active
+    {
+        get { return _active; }
+        set
+        {
+            if (_active && !value)
+                GiveExp();
+
+            _active = value;
+        }
+    }
 
     public bool Dead { get { return GetStat(StatEnum.HP) <= 0; } }
 
@@ -111,4 +126,16 @@ public class Unit : MonoBehaviour
 
     void PopCombatText(int value)
         => CombatText.Instance.PopText(this, value);
+
+    void GiveExp()
+    {
+        foreach (var unit in StateMachineController.Instance.Units)
+        {
+            if(unit.Alliance != Alliance)
+            {
+                unit.Experience += 1000;
+                Job.CheckLevelUp(unit);
+            }
+        }
+    }
 }

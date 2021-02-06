@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class HealEffect : SkillEffects
 {
@@ -12,7 +11,7 @@ public class HealEffect : SkillEffects
         var initial = Predict(target);
 
         var currentHp = target.GetStat(StatEnum.HP);
-        float roll = UnityEngine.Random.Range(1 - Randomness, 1 + Randomness);
+        float roll = Random.Range(1 - Randomness, 1 + Randomness);
 
         var finalHeal = (int)(initial * roll);
         target.SetStat(StatEnum.HP, finalHeal);
