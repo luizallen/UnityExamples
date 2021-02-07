@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1622026249335556736}
-  - component: {fileID: 9200411890205326265}
   - component: {fileID: 1116380053053477500}
+  - component: {fileID: 9200411890205326265}
   m_Layer: 0
   m_Name: HPAdditve
   m_TagString: Untagged
@@ -32,6 +32,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1116380053053477500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5471600532052607925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c51e30968eb9f447918645fb41068a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Value: 0
+  Stat: 0
 --- !u!114 &9200411890205326265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46,17 +60,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Unit: {fileID: 0}
   Duration: 0
---- !u!114 &1116380053053477500
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5471600532052607925}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 868cb991ca2127b4d866102bdef2e88a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Stat: 0
-  Value: 0

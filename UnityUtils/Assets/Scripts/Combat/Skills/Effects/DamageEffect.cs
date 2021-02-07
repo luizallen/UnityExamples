@@ -8,6 +8,9 @@ public class DamageEffect : SkillEffects
     public float Randomness = 0.2f;
     public float GotHitDelay = 0.1f;
 
+    public DamageType DamageType;
+    public ElementalType ElementalType; 
+
     public override void Apply(Unit target)
     {
         var damage = Predict(target);
@@ -28,7 +31,7 @@ public class DamageEffect : SkillEffects
 
         if (target.Dead)
         {
-            if(target.Active)
+            if (target.Active)
                 target.AnimationController.Death(GotHitDelay);
             target.Active = false;
         }
@@ -49,20 +52,41 @@ public class DamageEffect : SkillEffects
             case DamageType.Physical:
                 attackerScore += Turn.Unit.GetStat(StatEnum.ATK);
                 defenderScore += target.GetStat(StatEnum.DEF);
-                //bonus
                 break;
             case DamageType.Magical:
                 attackerScore += Turn.Unit.GetStat(StatEnum.MATK);
                 defenderScore += target.GetStat(StatEnum.MDEF);
-                //bonus
                 break;
             default:
                 break;
         }
 
-        float calculation = (attackerScore - (defenderScore / 2)) * BaseDamageMultiplier;
+        var attackerFinal = GetBonus(Turn.Unit, target, attackerScore); ;
+        var defenderFinal = GetBonus(target, Turn.Unit, defenderScore);
+
+        float calculation = (attackerFinal - (defenderFinal / 2)) * BaseDamageMultiplier;
         calculation = Mathf.Clamp(calculation, 0, calculation);
         return (int)calculation;
+    }
+
+    float GetBonus(Unit thisUnit, Unit otherUnit, float initialScore)
+    {
+        if(thisUnit.Stats.MultiplicativeModifier == null)
+            return initialScore;
+        
+
+        var forms = new MultiplicativeForms();
+        forms.OriginalValue = (int)initialScore;
+        forms.ThisUnit = thisUnit;
+        forms.OtherUnit = otherUnit;
+        forms.ElementalType = ElementalType;
+        thisUnit.Stats.MultiplicativeModifier(forms);
+        float bonus = forms.CurrentValue;
+        float final = initialScore * (1 + (bonus / 100));
+
+        Debug.LogFormat("Damage {0} * bonus: {1}, final = {2}", initialScore, bonus, final);
+
+        return final;
     }
 }
 

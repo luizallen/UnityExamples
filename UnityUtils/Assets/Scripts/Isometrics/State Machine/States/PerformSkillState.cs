@@ -20,6 +20,9 @@ public class PerformSkillState : State
         Turn.Skill.Perform();
         yield return new WaitForSeconds(1f);
 
+        if (Turn.IsItem != null)
+            Turn.Unit.Equipment.UnEquip(Turn.IsItem);
+
         StateMachine.ChangeTo<TurnEndState>();
     }
 }

@@ -26,7 +26,7 @@ public class Skill : MonoBehaviour
 
     public bool CanUse()
     {
-        if (Turn.Unit.GetStat(StatEnum.MP) >= ManaCost)
+        if (Turn.Unit.GetStat(StatEnum.MP) >= ManaCost || Turn.IsItem != null)
             return true;
 
         return false;

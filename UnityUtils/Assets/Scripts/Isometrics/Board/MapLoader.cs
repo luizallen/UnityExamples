@@ -58,12 +58,31 @@ public class MapLoader : MonoBehaviour
         var jobAsset = _searchJobs[serialized.Job];
         Job.Employ(unit, jobAsset, serialized.Level);
 
+        CreateItem(serialized.Items, unit);
+
         unit.Experience = Job.GetExpCurveValue(serialized.Level);
 
         return unit;
     }
 
-    private void BuildJobsDictonary()
+    void CreateItem(List<Item> items, Unit unit)
+    {
+        var equipmentHolder = unit.transform.Find("Equipment");
+
+        foreach (var item in items)
+        {
+            CreateItem(item, unit, equipmentHolder);
+        }
+    }
+
+    void CreateItem(Item item, Unit unit, Transform equipmentHolder)
+    {
+        var instantiated = Instantiate(item, unit.transform.position, Quaternion.identity, equipmentHolder);
+        unit.Equipment.Equip(instantiated);
+        instantiated.name = instantiated.name.Replace("(Clone)", "");
+    }
+
+    void BuildJobsDictonary()
     {
         _searchJobs = new Dictionary<string, Job>();
         foreach (var job in Jobs)

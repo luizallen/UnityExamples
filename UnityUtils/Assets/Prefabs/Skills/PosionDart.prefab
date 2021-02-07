@@ -88,10 +88,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8b68c58d3fc07a489d425a48c2951be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DamageType: 0
   BaseDamageMultiplier: 0.2
   Randomness: 0.2
   GotHitDelay: 0.1
+  DamageType: 0
+  ElementalType: 4
 --- !u!1 &1964939694772176180
 GameObject:
   m_ObjectHideFlags: 0
@@ -135,7 +136,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29ae7ef441f3c0e4caecc17b668a65e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DamageType: 2
   Status: {fileID: 9200411890205326265, guid: d9c3c3a0e5b5bef4485a46f9e5e48b1c, type: 3}
   StatusName: Posion
   StatusValue: -10

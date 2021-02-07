@@ -13,7 +13,7 @@
     void OverTimeEffect()
     {
         Duration--;
-        var modifiers = GetComponents<Modifier>();
+        var modifiers = GetComponents<StatModifier>();
         foreach (var modifier in modifiers)
         {
             Unit.SetStat(modifier.Stat, (int)modifier.Value);

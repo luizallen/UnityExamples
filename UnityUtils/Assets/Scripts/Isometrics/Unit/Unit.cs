@@ -19,6 +19,7 @@ public class Unit : MonoBehaviour
     public int Experience;
 
     public Job Job;
+    public Equipment Equipment;
     public TileLogic Tile;
     public AnimationController AnimationController;
     public OnTurnBegin OnTurnBegin;
@@ -46,6 +47,7 @@ public class Unit : MonoBehaviour
     {
         AudioSource = GetComponent<AudioSource>();
         Stats = GetComponentInChildren<Stats>();
+        Equipment = GetComponentInChildren<Equipment>();
         SpriteSwapper = transform.Find("Jumper/Sprite").GetComponent<SpriteSwapper>();
 
         AnimationController = GetComponent<AnimationController>();
@@ -95,8 +97,8 @@ public class Unit : MonoBehaviour
         var toUpdate = Stats.StatsList[(int)value];
         toUpdate.CurrentValue = Stats[value].BaseValue;
 
-        if (toUpdate.Modifiers != null)
-            toUpdate.Modifiers(toUpdate);
+        if (toUpdate.StatModifiers != null)
+            toUpdate.StatModifiers(toUpdate);
     }
 
     public void UpdateStat()

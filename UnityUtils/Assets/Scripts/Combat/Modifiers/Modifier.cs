@@ -1,31 +1,16 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public abstract class Modifier : MonoBehaviour
 {
-    public StatEnum Stat;
     public float Value;
 
-    Unit _host;
+    protected Unit _host;
 
-    public virtual void Activate(Unit unit)
-    {
+    public virtual void Activate(Unit unit) {
         _host = unit;
-        _host.Stats[Stat].Modifiers += Modify;
-        _host.UpdateStat(Stat);
     }
 
-    public virtual void Deactivate()
-    {
-        _host.Stats[Stat].Modifiers -= Modify;
-        _host.UpdateStat(Stat);
-    }
+    public abstract void Deactivate();
 
-    protected abstract void Modify(Stat stat);
-
-    private Sprite GetModifierIcon()
-    {
-        throw new NotImplementedException();
-    }
-
+    protected abstract void Modify(object args);
 }

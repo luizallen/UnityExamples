@@ -15,4 +15,26 @@ public class AssetCreator
 
         Selection.activeObject = asset;
     }
+
+    [MenuItem("Assets/Create/ScriptableObjects/ModifierCondition/JobCondition")]
+    public static void CreateModifierJobCondition()
+    {
+        var asset = ScriptableObject.CreateInstance<ModConditionJob>();
+
+        AssetDatabase.CreateAsset(asset, "Assets/Prefabs/Modifiers/NewScriptableObject.asset");
+        AssetDatabase.SaveAssets();
+
+        Selection.activeObject = asset;
+    }
+
+    [MenuItem("Assets/Create/ScriptableObjects/ModifierCondition/ElementalCondition")]
+    public static void CreateModifierElementalCondition()
+    {
+        var asset = ScriptableObject.CreateInstance<ModConditionElement>();
+
+        AssetDatabase.CreateAsset(asset, "Assets/Prefabs/Modifiers/NewScriptableObject.asset");
+        AssetDatabase.SaveAssets();
+
+        Selection.activeObject = asset;
+    }
 }

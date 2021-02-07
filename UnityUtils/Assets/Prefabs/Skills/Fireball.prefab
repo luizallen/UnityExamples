@@ -125,10 +125,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8b68c58d3fc07a489d425a48c2951be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DamageType: 1
   BaseDamageMultiplier: 0.8
   Randomness: 0.2
   GotHitDelay: 0.1
+  DamageType: 1
+  ElementalType: 1
 --- !u!1 &2333099235490554224
 GameObject:
   m_ObjectHideFlags: 0

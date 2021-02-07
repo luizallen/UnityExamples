@@ -47,7 +47,10 @@ public class SkillTargetState : State
         }
         else if (button == 2)
         {
-            StateMachine.ChangeTo<SkillSelectionState>();
+            if (Turn.IsItem != null)
+                StateMachine.ChangeTo<ItemSelectionState>();
+            else
+                StateMachine.ChangeTo<SkillSelectionState>();
         }
     }
 

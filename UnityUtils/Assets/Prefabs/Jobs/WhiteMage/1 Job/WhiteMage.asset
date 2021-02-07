@@ -71,10 +71,9 @@ MonoBehaviour:
     Growth: 0
   Skills:
   - {fileID: 4525835982533638122, guid: f4adfa7e46026ff4d9f17cf338aac3b7, type: 3}
-  - {fileID: 4525835982533638122, guid: b4ec34372edcd6d41b5605117861587c, type: 3}
-  - {fileID: 4525835982533638122, guid: d4ba30c5c0c785b44a74483c0329b99b, type: 3}
-  - {fileID: 4525835982533638122, guid: eff4d4ceaf771d740af707831bf56a5b, type: 3}
-  - {fileID: 4525835982533638122, guid: 026e0386426ca7d478503b9d874e451e, type: 3}
+  - {fileID: 4525835982533638122, guid: b687168529152d749bd8ce185b4cc285, type: 3}
+  - {fileID: 4525835982533638122, guid: 43fe8ba9757c8a04fa4f7c917285c26a, type: 3}
+  - {fileID: 2419449407922244006, guid: 6a8fb1bf3a8b0eb4e97433f28b217e74, type: 3}
   SpriteModel: Mini-Crusader
   AdvancesAtLevel: 5
   AdvancesTo:

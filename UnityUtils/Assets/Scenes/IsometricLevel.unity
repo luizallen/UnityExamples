@@ -4065,31 +4065,43 @@ MonoBehaviour:
     Position: {x: 0, y: -5, z: 0}
     Faction: 0
     Level: 1
+    Items:
+    - {fileID: 6342454451324889878, guid: 297a0dc5baea199469cb72ef5a94ccee, type: 3}
+    - {fileID: 6342454451324889878, guid: 8e600d196e45e174fafe4c427f1e1288, type: 3}
+    - {fileID: 3879055162821452209, guid: 876775ca092eb0a489451130fd2e1a08, type: 3}
   - CharacterName: Player2
     Job: BlackMage
     Position: {x: 0, y: -6, z: 0}
     Faction: 0
     Level: 1
+    Items:
+    - {fileID: 6342454451324889878, guid: 8e600d196e45e174fafe4c427f1e1288, type: 3}
   - CharacterName: Player3
     Job: WhiteMage
     Position: {x: 0, y: -7, z: 0}
-    Faction: 1
+    Faction: 0
     Level: 2
+    Items: []
   - CharacterName: Enemy1
     Job: Squire
     Position: {x: 3, y: -5, z: 0}
     Faction: 1
     Level: 2
+    Items:
+    - {fileID: 6342454451324889878, guid: 8e600d196e45e174fafe4c427f1e1288, type: 3}
   - CharacterName: Enemy2
     Job: BlackMage
     Position: {x: 3, y: -6, z: 0}
     Faction: 1
     Level: 2
+    Items:
+    - {fileID: 6342454451324889878, guid: 8e600d196e45e174fafe4c427f1e1288, type: 3}
   - CharacterName: Enemy3
     Job: WhiteMage
     Position: {x: 3, y: -7, z: 0}
     Faction: 1
     Level: 2
+    Items: []
 --- !u!4 &1230371030
 Transform:
   m_ObjectHideFlags: 0

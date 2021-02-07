@@ -5,7 +5,7 @@ public class Stat
     public int BaseValue;
     public int CurrentValue;
     public float Growth;
-    public StatModifier Modifiers;
+    public StatModifierHandler StatModifiers;
 }
 
-public delegate void StatModifier(Stat stat);
+public delegate void StatModifierHandler(Stat stat);

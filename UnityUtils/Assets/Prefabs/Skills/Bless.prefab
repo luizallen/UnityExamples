@@ -43,7 +43,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0014c625bb0dfeb4890442ef1d2ded0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DamageType: 1
   Randomness: 0.3
   BaseMultiplier: 0
 --- !u!1 &2333099235490554224
@@ -411,7 +410,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7070702029324038503}
   - component: {fileID: 6045650843596436945}
-  - component: {fileID: 6604542752996654015}
   m_Layer: 0
   m_Name: Effect
   m_TagString: Untagged
@@ -445,25 +443,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29ae7ef441f3c0e4caecc17b668a65e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DamageType: 0
-  Status: {fileID: 4084417264248134844, guid: 02b1c16d6b87ec44d8fd6f9840b0c531, type: 3}
+  Status: {fileID: 5016786536084214803, guid: 2de5d590fecfac444aa9f5ca9e3bc077, type: 3}
   StatusName: Bless
-  StatusValue: 5
+  StatusValue: 20
   Duration: 10
---- !u!114 &6604542752996654015
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6499658862547865242}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 868cb991ca2127b4d866102bdef2e88a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Stat: 5
-  Value: 50
 --- !u!1 &6567274989418165296
 GameObject:
   m_ObjectHideFlags: 0

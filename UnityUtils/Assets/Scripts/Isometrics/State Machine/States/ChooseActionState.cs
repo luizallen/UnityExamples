@@ -66,15 +66,15 @@ namespace Assets.Scripts.Isometrics.State_Machine.States
             switch (Index)
             {
                 case 0:
-                    if(!Turn.HasMoved)
+                    if (!Turn.HasMoved)
                         StateMachine.ChangeTo<MoveSelectionState>();
                     break;
                 case 1:
                     if (!Turn.HasActed)
                         StateMachine.ChangeTo<SkillSelectionState>();
-                        break;
+                    break;
                 case 2:
-                    //stateMachine.ChangeTo<ItemSelectState>();
+                    StateMachine.ChangeTo<ItemSelectionState>();
                     break;
                 case 3:
                     StateMachine.ChangeTo<TurnEndState>();
