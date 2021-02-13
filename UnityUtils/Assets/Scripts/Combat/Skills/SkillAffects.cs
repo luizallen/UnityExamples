@@ -2,17 +2,17 @@
 
 public class SkillAffects : MonoBehaviour
 {
-    public SKillAffectsType WhoItAffects;
+    public SkillAffectsType WhoItAffects;
 
     public bool IsTarget(Unit unit)
     {
         switch (WhoItAffects)
         {
-            case SKillAffectsType.AllyOnly:
+            case SkillAffectsType.AllyOnly:
                 return IsAlly(unit);
-            case SKillAffectsType.EnemyOnly:
+            case SkillAffectsType.EnemyOnly:
                 return IsEnemy(unit);
-            case SKillAffectsType.Default:
+            case SkillAffectsType.Default:
             default:
                 return true;
         }
@@ -23,7 +23,7 @@ public class SkillAffects : MonoBehaviour
     bool IsAlly(Unit unit) => unit.Alliance == Turn.Unit.Alliance;
 }
 
-public enum SKillAffectsType
+public enum SkillAffectsType
 {
     Default,
     AllyOnly,

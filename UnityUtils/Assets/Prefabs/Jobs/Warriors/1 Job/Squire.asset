@@ -73,6 +73,8 @@ MonoBehaviour:
   - {fileID: 4525835982533638122, guid: f4adfa7e46026ff4d9f17cf338aac3b7, type: 3}
   - {fileID: 4525835982533638122, guid: 6d8098e65a28ab249aab02185005fb72, type: 3}
   - {fileID: 2419449407922244006, guid: 736c555655640044cbe517174afc5f92, type: 3}
+  Behavior: {fileID: 8141958041674310484, guid: d24452d03406ffb4883a528b198e7a8d,
+    type: 3}
   SpriteModel: Mini-Crusader
   AdvancesAtLevel: 5
   AdvancesTo:

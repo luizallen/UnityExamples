@@ -5,6 +5,7 @@ using UnityEngine;
 public class UnitSerialized 
 {
     public string CharacterName;
+    public PlayerType Playertype;
     public string Job;
     public Vector3Int Position;
     public int Faction;

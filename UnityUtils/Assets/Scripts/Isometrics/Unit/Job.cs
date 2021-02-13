@@ -7,6 +7,7 @@ public class Job : ScriptableObject
 {
     public List<Stat> Stats;
     public List<Skill> Skills;
+    public GameObject Behavior;
     public string SpriteModel;
     public int AdvancesAtLevel;
     public List<Job> AdvancesTo;

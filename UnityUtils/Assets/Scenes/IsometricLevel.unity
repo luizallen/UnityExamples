@@ -1537,6 +1537,49 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &619932210
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 619932212}
+  - component: {fileID: 619932211}
+  m_Layer: 0
+  m_Name: AIController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &619932211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 619932210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f25a74e9fd102f4449ccf355f2d76ada, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &619932212
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 619932210}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 648.27386, y: 211.26526, z: -592.20435}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &644556537
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3186,7 +3229,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 3.11
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -3210,7 +3253,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1006871467}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 1.28, y: -0.6, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -4061,6 +4104,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c8a8c7d7e344f0a4f9e0195b938d836a, type: 2}
   SerializedUnits:
   - CharacterName: Player1
+    Playertype: 1
     Job: Squire
     Position: {x: 0, y: -5, z: 0}
     Faction: 0
@@ -4070,6 +4114,7 @@ MonoBehaviour:
     - {fileID: 6342454451324889878, guid: 8e600d196e45e174fafe4c427f1e1288, type: 3}
     - {fileID: 3879055162821452209, guid: 876775ca092eb0a489451130fd2e1a08, type: 3}
   - CharacterName: Player2
+    Playertype: 1
     Job: BlackMage
     Position: {x: 0, y: -6, z: 0}
     Faction: 0
@@ -4077,12 +4122,14 @@ MonoBehaviour:
     Items:
     - {fileID: 6342454451324889878, guid: 8e600d196e45e174fafe4c427f1e1288, type: 3}
   - CharacterName: Player3
+    Playertype: 1
     Job: WhiteMage
     Position: {x: 0, y: -7, z: 0}
     Faction: 0
     Level: 2
     Items: []
   - CharacterName: Enemy1
+    Playertype: 1
     Job: Squire
     Position: {x: 3, y: -5, z: 0}
     Faction: 1
@@ -4090,6 +4137,7 @@ MonoBehaviour:
     Items:
     - {fileID: 6342454451324889878, guid: 8e600d196e45e174fafe4c427f1e1288, type: 3}
   - CharacterName: Enemy2
+    Playertype: 1
     Job: BlackMage
     Position: {x: 3, y: -6, z: 0}
     Faction: 1
@@ -4097,6 +4145,7 @@ MonoBehaviour:
     Items:
     - {fileID: 6342454451324889878, guid: 8e600d196e45e174fafe4c427f1e1288, type: 3}
   - CharacterName: Enemy3
+    Playertype: 1
     Job: WhiteMage
     Position: {x: 3, y: -7, z: 0}
     Faction: 1

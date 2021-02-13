@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 namespace Assets.Scripts.Isometrics.State_Machine.States
 {
@@ -8,17 +9,22 @@ namespace Assets.Scripts.Isometrics.State_Machine.States
         {
             MoveSelector(Turn.Unit.Tile);
             base.Enter();
-            Index = 0;
+            if (Turn.Unit.PlayerType == PlayerType.Human)
+            {
+                Index = 0;
 
-            CurrentUISelector = StateMachine.ChooseActionSelection;
+                CurrentUISelector = StateMachine.ChooseActionSelection;
 
-            ChangeUISelector(StateMachine.ChooseActionButtons);
-            CheckActions();
+                ChangeUISelector(StateMachine.ChooseActionButtons);
+                CheckActions();
 
-            Inputs.OnMove += OnMove;
-            Inputs.OnFire += OnFire;
+                Inputs.OnMove += OnMove;
+                Inputs.OnFire += OnFire;
 
-            StateMachine.ChooseActionPanel.MoveTo("Show");
+                StateMachine.ChooseActionPanel.MoveTo("Show");
+            }
+            else
+                StartCoroutine(ComputerChooseAction());
         }
 
         public override void Exit()
@@ -82,11 +88,30 @@ namespace Assets.Scripts.Isometrics.State_Machine.States
             }
         }
 
-        private void CheckActions()
+        void CheckActions()
         {
             PaintButton(StateMachine.ChooseActionButtons[0], Turn.HasMoved);
             PaintButton(StateMachine.ChooseActionButtons[1], Turn.HasActed);
             PaintButton(StateMachine.ChooseActionButtons[2], Turn.HasActed);
+        }
+
+        IEnumerator ComputerChooseAction()
+        {
+            var plan = ComputerPlayer.Instance.CurrentPlan;
+            if(plan == null)
+            {
+                plan = ComputerPlayer.Instance.Evaluate();
+                Turn.Skill = plan.Skill;
+            }
+
+            yield return new WaitForSeconds(1f);
+
+            if (Turn.HasMoved == false && plan.MovePos != Turn.Unit.Tile.Pos)
+                StateMachine.ChangeTo<MoveSelectionState>();
+            else if (Turn.HasActed == false && Turn.Skill != null)
+                StateMachine.ChangeTo<SkillTargetState>();
+            else
+                StateMachine.ChangeTo<TurnEndState>();
         }
     }
 }

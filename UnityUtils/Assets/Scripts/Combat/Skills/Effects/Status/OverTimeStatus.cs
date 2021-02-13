@@ -20,6 +20,6 @@
         }
 
         if (Duration <= 0)
-            Destroy(this.gameObject);
+            Destroy(gameObject);
     }
 }

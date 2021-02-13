@@ -1,17 +1,26 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections;
+using UnityEngine;
 
 public class ConfirmSkillState : State
 {
     public override void Enter()
     {
         base.Enter();
-        Inputs.OnFire += OnFire;
 
         Turn.Targets = Turn.Skill.GetArea();
         Board.SelectTiles(Turn.Targets, Turn.Unit.Alliance);
 
         StateMachine.SkillPredictionPanel.SetPredictionText();
         StateMachine.SkillPredictionPanel.positioner.MoveTo("Show");
+
+        if (Turn.Unit.PlayerType == PlayerType.Human)
+            Inputs.OnFire += OnFire;
+        else
+        {
+            StateMachine.LeftCharacterPanel.Show(Turn.Unit);
+            StartCoroutine(ComputerConfirmSkill());
+        }
     }
 
     public override void Exit()
@@ -43,4 +52,12 @@ public class ConfirmSkillState : State
             StateMachine.ChangeTo<SkillTargetState>();
         }
     }
+
+    IEnumerator ComputerConfirmSkill()
+    {
+        yield return new WaitForSeconds(1.5f);
+        StateMachine.LeftCharacterPanel.Hide();
+        StateMachine.ChangeTo<PerformSkillState>();
+    }
+
 }

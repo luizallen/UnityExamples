@@ -12,7 +12,7 @@ public class Skill : MonoBehaviour
     {
         get
         {
-            if(primary == null)
+            if (primary == null)
             {
                 primary = transform.Find("Primary");
                 _secondary = transform.Find("Secondary");
@@ -68,14 +68,14 @@ public class Skill : MonoBehaviour
         foreach (var target in Turn.Targets)
         {
             var unit = target.content.GetComponent<Unit>();
-            if (unit == null)
+            if (unit == null || unit.Dead)
                 continue;
 
             var didHit = RollToHit(unit, _primary);
             VFX(unit, didHit);
 
-            if(unit!=null && didHit)
-            {          
+            if (unit != null && didHit)
+            {
                 GetComponentInChildren<SkillEffects>().Apply(unit);
 
                 if (_secondary.childCount != 0 && RollToHit(unit, _secondary))
@@ -108,7 +108,7 @@ public class Skill : MonoBehaviour
             fx.DidHit = didHit;
             fx.VFX(target);
         }
-            
+
     }
 
     private void SFX()

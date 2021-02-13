@@ -29,6 +29,11 @@ public class TurnEndState : State
         Turn.Unit.ChargeTime -= Turn.Unit.GetStat(StatEnum.SPEED);
 
         Turn.HasActed = Turn.HasMoved = false;
+        Turn.Skill = null;
+        Turn.IsItem = null;
+        ComputerPlayer.Instance.CurrentPlan = null;
+
+
         StateMachine.Units.Remove(Turn.Unit);
         StateMachine.Units.Add(Turn.Unit);
 

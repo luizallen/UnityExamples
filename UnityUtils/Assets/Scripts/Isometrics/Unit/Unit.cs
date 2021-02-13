@@ -27,6 +27,8 @@ public class Unit : MonoBehaviour
 
     public SpriteSwapper SpriteSwapper;
 
+    public PlayerType PlayerType;
+
     public bool _active;
 
     public bool Active
@@ -41,7 +43,7 @@ public class Unit : MonoBehaviour
         }
     }
 
-    public bool Dead { get { return GetStat(StatEnum.HP) <= 0; } }
+    public bool Dead { get { return Stats[StatEnum.HP].CurrentValue <= 0; } }
 
     void Awake()
     {
@@ -63,33 +65,18 @@ public class Unit : MonoBehaviour
 
     public void SetStat(StatEnum stat, int value)
     {
-        if (stat == StatEnum.HP)
-        {
-            Stats[stat].CurrentValue = ClampStat(StatEnum.MAXHP, Stats[stat].CurrentValue + value);
-            PopCombatText(value);
-            UpdateHealthBar();
-        }
-        else if (stat == StatEnum.MP)
-        {
-            Stats[stat].CurrentValue = ClampStat(StatEnum.MAXMP, Stats[stat].CurrentValue + value);
-        }
-    }
-
-    public void RandomizeStats()
-    {
-        foreach (var stats in Stats.StatsList)
-        {
-            if (stats.Type == StatEnum.MOV)
+        if (Active) {
+            if (stat == StatEnum.HP)
             {
-                stats.BaseValue = Random.Range(1, 5);
-                continue;
+                Stats[stat].CurrentValue = ClampStat(StatEnum.MAXHP, Stats[stat].CurrentValue + value);
+                PopCombatText(value);
+                UpdateHealthBar();
             }
-
-            var temp = Random.Range(1, 100); ;
-
-            stats.BaseValue = temp;
-            stats.CurrentValue = temp;
-        }
+            else if (stat == StatEnum.MP)
+            {
+                Stats[stat].CurrentValue = ClampStat(StatEnum.MAXMP, Stats[stat].CurrentValue + value);
+            }
+        }   
     }
 
     public void UpdateStat(StatEnum value)

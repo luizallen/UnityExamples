@@ -1,5 +1,7 @@
 ﻿using Assets.Scripts.Isometrics.State_Machine.States;
+using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class MoveSelectionState : State
 {
@@ -8,11 +10,18 @@ public class MoveSelectionState : State
     public override void Enter()
     {
         base.Enter();
-        Inputs.OnMove += OnMoveTileSelector;
-        Inputs.OnFire += OnFire;
+       
         _tiles = Board.Instance.Search(Turn.Unit.Tile, Turn.Unit.GetComponent<Movement>().ValidateMovement);
         _tiles.Remove(Turn.Unit.Tile);
         Board.Instance.SelectTiles(_tiles, Turn.Unit.Alliance);
+
+        if (Turn.Unit.PlayerType == PlayerType.Human)
+        {
+            Inputs.OnMove += OnMoveTileSelector;
+            Inputs.OnFire += OnFire;
+        }
+        else
+            StartCoroutine(ComputerSelectMoveTarget());
     }
 
     public override void Exit()
@@ -37,4 +46,14 @@ public class MoveSelectionState : State
             StateMachine.ChangeTo<ChooseActionState>();
         }
     }
+
+    IEnumerator ComputerSelectMoveTarget()
+    {
+        var plan = ComputerPlayer.Instance.CurrentPlan;
+        yield return StartCoroutine(AIMoveSelector(plan.MovePos));
+
+        yield return new WaitForSeconds(0.5f);
+        StateMachine.ChangeTo<MoveSequenceState>();
+    }
+
 }

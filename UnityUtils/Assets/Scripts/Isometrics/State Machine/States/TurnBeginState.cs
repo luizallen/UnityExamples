@@ -19,7 +19,7 @@ public class TurnBeginState : State
         Turn.Unit.OnTurnBegin?.Invoke();
 
         yield return null;
-        if (Turn.Unit.GetStat(StatEnum.HP) <= 0)
+        if (Turn.Unit.Dead)
         {
             if (Turn.Unit.Active)
                 Turn.Unit.AnimationController.Death();

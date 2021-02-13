@@ -50,10 +50,13 @@ public class MapLoader : MonoBehaviour
         unit.Tile = tile;
         unit.name = serialized.CharacterName;
         unit.Faction = serialized.Faction;
-
+        unit.PlayerType = serialized.Playertype;
         tile.content = unit.gameObject;
 
         StateMachineController.Instance.Units.Add(unit);
+
+        var jumper = unit.transform.Find("Jumper");
+        jumper.GetComponentInChildren<SpriteRenderer>().sortingOrder = unit.Tile.ContentOrder;
 
         var jobAsset = _searchJobs[serialized.Job];
         Job.Employ(unit, jobAsset, serialized.Level);
