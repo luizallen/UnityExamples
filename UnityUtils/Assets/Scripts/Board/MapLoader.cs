@@ -53,7 +53,7 @@ public class MapLoader : MonoBehaviour
         unit.PlayerType = serialized.Playertype;
         tile.content = unit.gameObject;
 
-        StateMachineController.Instance.Units.Add(unit);
+        CombatStateMachineController.Instance.Units.Add(unit);
 
         var jumper = unit.transform.Find("Jumper");
         jumper.GetComponentInChildren<SpriteRenderer>().sortingOrder = unit.Tile.ContentOrder;

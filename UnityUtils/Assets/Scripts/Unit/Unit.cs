@@ -118,7 +118,7 @@ public class Unit : MonoBehaviour
 
     void GiveExp()
     {
-        foreach (var unit in StateMachineController.Instance.Units)
+        foreach (var unit in CombatStateMachineController.Instance.Units)
         {
             if(unit.Alliance != Alliance)
             {

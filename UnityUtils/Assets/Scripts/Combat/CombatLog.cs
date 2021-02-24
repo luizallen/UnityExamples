@@ -9,7 +9,7 @@ public static class CombatLog
 
     public static void CheckActive()
     {
-        foreach (var unit in StateMachineController.Instance.Units)
+        foreach (var unit in CombatStateMachineController.Instance.Units)
         {
             unit.Active = unit.GetStat(StatEnum.HP) <= 0 ? false : true;
         }
