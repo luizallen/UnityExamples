@@ -29,7 +29,7 @@ public class Board : MonoBehaviour
         Grid = GetComponent<Grid>();
     }
 
-    public IEnumerator InitSequence(LoadState loadState)
+    public IEnumerator InitSequence(State loadState)
     {
         yield return StartCoroutine(LoadFloors(loadState));
         yield return null;
@@ -37,7 +37,7 @@ public class Board : MonoBehaviour
         yield return null;
     }
 
-    IEnumerator LoadFloors(LoadState loadState)
+    IEnumerator LoadFloors(State loadState)
     {
         foreach (var floor in Floors)
         {

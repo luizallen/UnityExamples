@@ -19,7 +19,7 @@ public static class CombatLog
     {
         var activeAlliances = 0;
 
-        foreach (var alliances in MapLoader.Instance.Alliances)
+        foreach (var alliances in CombatMapLoader.Instance.Alliances)
         {
             activeAlliances += CheckAnyActive(alliances);
         }

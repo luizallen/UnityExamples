@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class MapLoader : MonoBehaviour
+public class CombatMapLoader : MonoBehaviour
 {
     public Unit UnitPrefab;
 
-    public static MapLoader Instance;
+    public static CombatMapLoader Instance;
 
     public List<Alliance> Alliances;
 

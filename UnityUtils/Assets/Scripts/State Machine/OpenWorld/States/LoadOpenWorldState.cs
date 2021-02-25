@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LoadState : CombatState
+public class LoadOpenWorldState : OpenWorldState
 {
     public override void Enter()
     {
@@ -17,13 +17,7 @@ public class LoadState : CombatState
         yield return LoadAnimations();
         yield return null;
 
-        CombatMapLoader.Instance.CreateUnits();
-        yield return null;
-
-        InitialTurnOrdering();
-        yield return null;
-
-        UnitAlliances();
+        OpenWorldMapLoader.Instance.CreateUnits();
         yield return null;
 
         var blockers = Blockers.Instance.GetBlockers();
@@ -33,7 +27,7 @@ public class LoadState : CombatState
         yield return null;
 
         Time.timeScale = 3;
-        CombatStateMachineController.Instance.ChangeTo<TurnBeginState>();
+        OpenWorldStateMachine.Instance.ChangeTo<IdleState>();
     }
 
     IEnumerator LoadAnimations()
@@ -42,36 +36,6 @@ public class LoadState : CombatState
         foreach (var loader in loaders)
         {
             yield return loader.Load();
-        }
-    }
-
-    void InitialTurnOrdering()
-    {
-        foreach (var unit in StateMachine.Units)
-        {
-            unit.ChargeTime = 101 - unit.GetStat(StatEnum.SPEED);
-            unit.Active = true;
-        }
-    }
-
-    void UnitAlliances()
-    {
-        foreach (var unit in StateMachine.Units)
-        {
-            SetUnitAlliance(unit);
-        }
-    }
-
-    void SetUnitAlliance(Unit unit)
-    {
-        foreach (var alliances in CombatMapLoader.Instance.Alliances)
-        {
-            if (alliances.Factions.Contains(unit.Faction))
-            {
-                alliances.Units.Add(unit);
-                unit.Alliance = unit.Faction;
-                return;
-            }
         }
     }
 
@@ -84,3 +48,4 @@ public class LoadState : CombatState
         }
     }
 }
+
