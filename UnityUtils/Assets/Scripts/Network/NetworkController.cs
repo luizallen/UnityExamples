@@ -5,52 +5,63 @@ using UnityEngine;
 
 public class NetworkController : MonoBehaviourPunCallbacks
 {
+    public string VersionName = "0.1";
     public static NetworkController Instance;
-
-    private string _playerName;
 
     void Awake()
     {
-        Instance = this;
+        Instance = this;   
+        PhotonNetwork.AutomaticallySyncScene = true;        
     }
 
     public void Connect()
-    {
+    {        
+        PhotonNetwork.ConnectUsingSettings();
         PhotonNetwork.NickName = NetworkConfig.PlayerName;
-        PhotonNetwork.ConnectToRegion(NetworkConfig.ServerRegion);
+        PhotonNetwork.GameVersion = VersionName;
     }
 
-    public override void OnConnectedToMaster()
+    public void ConnectOnServer()
     {
-        Debug.Log("OnConnectedToMaster");
+        //PhotonNetwork.ConnectToRegion(NetworkConfig.ServerRegion);
         PhotonNetwork.JoinLobby();
     }
 
     public override void OnConnected()
     {
         Debug.Log("OnConnected");
-        Debug.Log("Server: " + PhotonNetwork.CloudRegion + "Ping " + PhotonNetwork.GetPing());
+    }
+
+    public override void OnConnectedToMaster()
+    {
+        Debug.Log("OnConnectedToMaster");
+        NetworkConfig.IsConnected = true;
     }
 
     public override void OnDisconnected(DisconnectCause cause)
     {
-        Debug.Log("OnConnected " + cause);
+        NetworkConfig.IsConnected = false;
+        PhotonNetwork.Disconnect();
+        Debug.Log("Disconnected");
     }
 
     public override void OnJoinedLobby()
     {
         Debug.Log("Connected on Lobby");
-        PhotonNetwork.JoinRandomRoom();
-    }
-
-    public override void OnJoinRandomFailed(short returnCode, string message)
-    {
-        var roomTemp = "Room" + Random.Range(1, 10000);
-        PhotonNetwork.CreateRoom(roomTemp);
+        Debug.Log("Server: " + PhotonNetwork.CloudRegion + "Ping " + PhotonNetwork.GetPing());
+        PhotonNetwork.JoinRoom($"{NetworkConfig.ServerRegion}");
     }
 
     public override void OnJoinedRoom()
     {
-        Debug.Log("Entered on Room");
+        Debug.Log("Connected on Room");
+        Debug.Log("Room Name: " + PhotonNetwork.CurrentRoom.Name);
+        Debug.Log("Current Player in Room: " + PhotonNetwork.CurrentRoom.PlayerCount);
+    }
+
+    public override void OnJoinRoomFailed(short returnCode, string message)
+    {
+        var roomOptions = new RoomOptions { MaxPlayers = 4 };
+        PhotonNetwork.CreateRoom($"{NetworkConfig.ServerRegion}", roomOptions, TypedLobby.Default);
     }
 }

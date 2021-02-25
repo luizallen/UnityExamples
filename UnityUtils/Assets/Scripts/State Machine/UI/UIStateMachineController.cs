@@ -4,6 +4,9 @@ public class UIStateMachineController : BaseStateMachine
 {
     public static UIStateMachineController Instance;
 
+    [Header("MenuItems")]
+    public LoadingPanel LoadingPanel;
+
     [Header("LoginPanel")]
     public LoginPanel LoginPanel;
 

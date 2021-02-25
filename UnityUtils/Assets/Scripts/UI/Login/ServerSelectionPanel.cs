@@ -1,5 +1,4 @@
 ﻿using Assets.Scripts.Network;
-using Photon.Pun;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -90,9 +89,6 @@ public class ServerSelectionPanel : PanelPositioner
 
         foreach (var server in _serversList)
         {
-            var conn = PhotonNetwork.ConnectToRegion(server.Key);
-            var playerCount = PhotonNetwork.PlayerList.Count();
-
             var serverItem = Instantiate(ServerListItemPrefab,
                     ServerListContent.transform.position, 
                     Quaternion.identity,
@@ -101,7 +97,7 @@ public class ServerSelectionPanel : PanelPositioner
             var serverItemComponent = serverItem.GetComponent<ServerItem>();
 
             serverItemComponent.ServerName.text = server.Value;
-            serverItemComponent.TotalOfPlayers.text = $"{playerCount} / 20";
+            serverItemComponent.TotalOfPlayers.text = $"{0} / 20";
             serverItemComponent.ServerRegion = server.Key;
 
             var image = serverItem.GetComponent<Image>();
@@ -113,8 +109,6 @@ public class ServerSelectionPanel : PanelPositioner
 
             InstantiatedServers.Add(serverItem);
             count++;
-
-            PhotonNetwork.Disconnect();
         }
     }
 

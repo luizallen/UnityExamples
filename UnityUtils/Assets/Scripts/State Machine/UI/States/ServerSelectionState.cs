@@ -3,10 +3,17 @@ using UnityEngine;
 
 public class ServerSelectionState : MenuUIState
 {
+    void Update()
+    {
+        if (StateMachine.Current.GetType() == typeof(ServerSelectionState)
+           &&  PhotonNetwork.IsConnectedAndReady)
+            StateMachine.LoadingPanel.Message.text = "Connected";
+    }
+
     public override void Enter()
     {
         StateMachine.ServerSelectionPanel.Show();
-        StateMachine.ServerSelectionPanel.EnterButton.onClick.AddListener(Login);
+        StateMachine.ServerSelectionPanel.EnterButton.onClick.AddListener(ConnectOnServer);
         StateMachine.ServerSelectionPanel.LogoutButton.onClick.AddListener(Logout);
 
         Inputs.OnMove += OnMove;
@@ -14,13 +21,18 @@ public class ServerSelectionState : MenuUIState
 
     public override void Exit()
     {
-        StateMachine.ServerSelectionPanel.Hide();
+        if (StateMachine.ServerSelectionPanel.isActiveAndEnabled)
+            StateMachine.ServerSelectionPanel.Hide();
+
+        StateMachine.LoadingPanel.Hide();
         Inputs.OnMove -= OnMove;
     }
 
-    void Login()
+    void ConnectOnServer()
     {
-        NetworkController.Instance.Connect();
+        NetworkController.Instance.ConnectOnServer();
+        StateMachine.ServerSelectionPanel.Hide();
+        StateMachine.LoadingPanel.Show("Connecting on server");
     }
 
     void Logout()
