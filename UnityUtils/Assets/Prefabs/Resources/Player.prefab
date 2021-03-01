@@ -478,8 +478,8 @@ GameObject:
   - component: {fileID: 6639919045545294010}
   - component: {fileID: 7561373181846503754}
   - component: {fileID: 8255772970712920962}
-  - component: {fileID: -7856064819219910478}
-  - component: {fileID: -5851856514316753504}
+  - component: {fileID: -6563740094674180322}
+  - component: {fileID: -1573192360226723038}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -655,7 +655,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &-7856064819219910478
+--- !u!114 &-6563740094674180322
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -674,11 +674,11 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 0
   ObservedComponents:
-  - {fileID: -5851856514316753504}
+  - {fileID: -1573192360226723038}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &-5851856514316753504
+--- !u!114 &-1573192360226723038
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

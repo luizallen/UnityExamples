@@ -9,7 +9,7 @@ public class LoginState : MenuUIState
     void Update()
     {
         if (StateMachine.Current.GetType() == typeof(LoginState)
-           && PhotonNetwork.IsConnectedAndReady)
+           && NetworkConfig.IsConnected)
             StateMachine.ChangeTo<ServerSelectionState>();
     }
 

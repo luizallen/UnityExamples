@@ -4,5 +4,7 @@
     {
         public static string PlayerName = "TestPlayer";
         public static string ServerRegion;
+
+        public static bool IsConnected;
     }
 }

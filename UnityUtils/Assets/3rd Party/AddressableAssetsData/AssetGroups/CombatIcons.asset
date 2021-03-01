@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: CombatIcons
+  m_EditorClassIdentifier: 
+  m_GroupName: CombatIcons
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 745ab3456980c444a970827cc1d761fa
+  m_SerializeEntries:
+  - m_GUID: 0a834bffd5b0e5a40944d16fc5cd3623
+    m_Address: Assets/Sprites/UI/Icons/Combat/magic-icon.jpg
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Damage-icon/Magical
+    - Damage-Icon/Magic
+    m_MainAsset: {fileID: 2800000, guid: 0a834bffd5b0e5a40944d16fc5cd3623, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 0a834bffd5b0e5a40944d16fc5cd3623, type: 3}
+  - m_GUID: 2942e76d4dd031b439eabc4e7acd7a94
+    m_Address: Assets/Sprites/UI/Icons/Combat/earth-icon.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Damage-Icon/Earth
+    m_MainAsset: {fileID: 2800000, guid: 2942e76d4dd031b439eabc4e7acd7a94, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 2942e76d4dd031b439eabc4e7acd7a94, type: 3}
+  - m_GUID: 6581bb355f8cc774b86ebdec6b168fef
+    m_Address: Assets/Sprites/UI/Icons/Combat/burn-icon.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Damage-icon/Burn
+    - Damage-Icon/Fire
+    m_MainAsset: {fileID: 2800000, guid: 6581bb355f8cc774b86ebdec6b168fef, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: 6581bb355f8cc774b86ebdec6b168fef, type: 3}
+  - m_GUID: bab0620a58cdb5c43ba7ff699a5e9409
+    m_Address: Assets/Sprites/UI/Icons/Combat/heal-icon.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Damage-icon/Heal
+    - Damage-Icon/Heal
+    m_MainAsset: {fileID: 2800000, guid: bab0620a58cdb5c43ba7ff699a5e9409, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: bab0620a58cdb5c43ba7ff699a5e9409, type: 3}
+  - m_GUID: db56f58981aed654caca87f6f76a2de8
+    m_Address: Assets/Sprites/UI/Icons/Combat/bleed-icon.png
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Damage-icon/Physical
+    - Damage-Icon/Physical
+    m_MainAsset: {fileID: 2800000, guid: db56f58981aed654caca87f6f76a2de8, type: 3}
+    m_TargetAsset: {fileID: 2800000, guid: db56f58981aed654caca87f6f76a2de8, type: 3}
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 08f0469ccfd78af4bb9f950441e6e24b, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 46967b5c1b1e1a24cbc01e30d90f9f26, type: 2}
+    - {fileID: 11400000, guid: 99aa9134722bb1d478dd9a0ae6a10392, type: 2}

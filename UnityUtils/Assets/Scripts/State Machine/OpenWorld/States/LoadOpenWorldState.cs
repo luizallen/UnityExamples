@@ -17,15 +17,15 @@ public class LoadOpenWorldState : OpenWorldState
 
         yield return LoadAnimations();
         yield return null;
-
-        var unit = OpenWorldMapLoader.Instance.CreateUnit(NetworkConfig.PlayerName);
-        StateMachine.Player = unit;
-        yield return null;
-
+        
         var blockers = Blockers.Instance.GetBlockers();
         yield return null;
 
         SetBlockers(blockers);
+        yield return null;
+
+        var unit = OpenWorldMapLoader.Instance.CreateUnit(NetworkConfig.PlayerName);
+        StateMachine.Player = unit;
         yield return null;
 
         Time.timeScale = 3;

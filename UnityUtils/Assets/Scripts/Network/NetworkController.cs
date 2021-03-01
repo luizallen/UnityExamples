@@ -35,11 +35,13 @@ public class NetworkController : MonoBehaviourPunCallbacks
     public override void OnConnectedToMaster()
     {
         Debug.Log("OnConnectedToMaster");
+        NetworkConfig.IsConnected = true;
     }
 
     public override void OnDisconnected(DisconnectCause cause)
     {
         Debug.Log("Disconnected");
+        NetworkConfig.IsConnected = false;
     }
 
     public override void OnJoinedLobby()
