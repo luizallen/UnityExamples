@@ -30,17 +30,25 @@ public class OpenWorldMapLoader : MonoBehaviour
 
         TileLogic tile = Board.GetTile(initialPosition);
 
-        //var instantiatedUnit = PhotonNetwork.Instantiate(UnitPrefab.name,
-        //                        tile.WorldPos,
-        //                        Quaternion.identity,
-        //                        0);
+        Unit unit;
 
-        //var unit = instantiatedUnit.GetComponent<Unit>();
+        if (PhotonNetwork.OfflineMode)
+        {
+            unit = Instantiate(UnitPrefab,
+                               tile.WorldPos,
+                               Quaternion.identity,
+                               _holder.transform);
 
-        var unit = Instantiate(UnitPrefab,
-                                tile.WorldPos,
-                                Quaternion.identity,
-                                _holder.transform);
+        }
+        else
+        {
+            var instantiatedUnit = PhotonNetwork.Instantiate(UnitPrefab.name,
+                                    tile.WorldPos,
+                                    Quaternion.identity,
+                                    0);
+
+            unit = instantiatedUnit.GetComponent<Unit>();
+        }
 
         unit.Tile = tile;
         unit.name = playerName;

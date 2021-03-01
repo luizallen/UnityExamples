@@ -7,7 +7,7 @@ public class ServerSelectionState : MenuUIState
     void Update()
     {
         if (StateMachine.Current.GetType() == typeof(ServerSelectionState)
-           && PhotonNetwork.IsConnectedAndReady) {
+           && PhotonNetwork.InRoom) {
             StateMachine.LoadingPanel.Message.text = "Connected";
             new WaitForSeconds(1);
             SceneManager.LoadScene("FirstMap");

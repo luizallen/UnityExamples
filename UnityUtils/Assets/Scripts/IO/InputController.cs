@@ -75,9 +75,6 @@ public class Mouse
             Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             pos.z = 0;
             var position = Floor.Instance.GetTileMapPosition(pos);
-
-            Debug.Log(position);
-
             return position;
         }
     }

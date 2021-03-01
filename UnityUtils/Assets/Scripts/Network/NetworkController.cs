@@ -10,22 +10,20 @@ public class NetworkController : MonoBehaviourPunCallbacks
 
     void Awake()
     {
-        PhotonNetwork.Disconnect();
-
         Instance = this;   
-        PhotonNetwork.AutomaticallySyncScene = true;        
+        PhotonNetwork.AutomaticallySyncScene = true;
     }
 
     public void Connect()
-    {        
-        PhotonNetwork.ConnectUsingSettings();
+    {
         PhotonNetwork.NickName = NetworkConfig.PlayerName;
         PhotonNetwork.GameVersion = VersionName;
+        PhotonNetwork.ConnectUsingSettings();
+
     }
 
     public void ConnectOnServer()
     {
-        //PhotonNetwork.ConnectToRegion(NetworkConfig.ServerRegion);
         PhotonNetwork.JoinLobby();
     }
 
@@ -37,12 +35,10 @@ public class NetworkController : MonoBehaviourPunCallbacks
     public override void OnConnectedToMaster()
     {
         Debug.Log("OnConnectedToMaster");
-        NetworkConfig.IsConnected = true;
     }
 
     public override void OnDisconnected(DisconnectCause cause)
     {
-        NetworkConfig.IsConnected = false;
         Debug.Log("Disconnected");
     }
 
