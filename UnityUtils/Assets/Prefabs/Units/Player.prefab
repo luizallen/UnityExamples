@@ -534,13 +534,14 @@ MonoBehaviour:
   Faction: 0
   ChargeTime: 0
   Alliance: 0
-  SpriteModel: 
+  SpriteModel: Mini-Crusader
   Direction: 83
   Experience: 0
   Job: {fileID: 0}
   Equipment: {fileID: 0}
   AnimationController: {fileID: 0}
   HealthBar: {fileID: 7941469318551489397}
+  PlayerName: {fileID: 2559820244281264850}
   SpriteSwapper: {fileID: 0}
   PlayerType: 0
   _active: 0

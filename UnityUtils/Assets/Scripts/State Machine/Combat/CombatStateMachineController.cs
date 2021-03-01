@@ -6,8 +6,6 @@ public class CombatStateMachineController : BaseStateMachine
 {
     public static CombatStateMachineController Instance;
    
-    public Transform Selector;
-    public TileLogic SelectedTile;
     public List<Unit> Units;    
 
     [Header("ChooseActionState")]

@@ -1907,7 +1907,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1389285896
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2840,6 +2840,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4504cb95e66446f4bac6707e875f612e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Selector: {fileID: 0}
   LoadingPanel: {fileID: 134597968}
   LoginPanel: {fileID: 713476600}
   ServerSelectionPanel: {fileID: 707150716}

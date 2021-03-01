@@ -34,14 +34,14 @@ public class MoveSelectionState : CombatState
 
     void OnFire(object sender, object args)
     {
-        int button = (int)args;
+        var mouse = (Mouse)args;
 
-        if (button == 1)
+        if (mouse.Button == 1)
         {
             if(_tiles.Contains(StateMachine.SelectedTile))
                 StateMachine.ChangeTo<MoveSequenceState>();
         }
-        else if (button == 2)
+        else if (mouse.Button == 2)
         {
             StateMachine.ChangeTo<ChooseActionState>();
         }

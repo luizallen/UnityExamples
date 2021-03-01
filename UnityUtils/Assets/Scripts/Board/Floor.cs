@@ -17,8 +17,11 @@ public class Floor : MonoBehaviour
     public Vector3Int MaxXY;
     public int Height;
 
+    public static Floor Instance;
+
     void Awake()
     {
+        Instance = this;
         TilemapRenderer = this.transform.GetComponent<TilemapRenderer>();
         Tilemap = GetComponent<Tilemap>();
         Highlight = transform.parent.Find("Highlight").GetComponent<Tilemap>();
@@ -40,4 +43,6 @@ public class Floor : MonoBehaviour
         }
         return tiles;
     }
+
+    public Vector3Int GetTileMapPosition(Vector3 pos) => Tilemap.WorldToCell(pos);
 }

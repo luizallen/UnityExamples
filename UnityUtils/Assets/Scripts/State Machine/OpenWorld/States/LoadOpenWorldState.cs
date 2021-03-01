@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Assets.Scripts.Network;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,7 +18,8 @@ public class LoadOpenWorldState : OpenWorldState
         yield return LoadAnimations();
         yield return null;
 
-        OpenWorldMapLoader.Instance.CreateUnits();
+        var unit = OpenWorldMapLoader.Instance.CreateUnit(NetworkConfig.PlayerName);
+        StateMachine.Player = unit;
         yield return null;
 
         var blockers = Blockers.Instance.GetBlockers();

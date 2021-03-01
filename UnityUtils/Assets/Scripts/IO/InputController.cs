@@ -10,6 +10,7 @@ public class InputController : MonoBehaviour
     public static InputController Instance;
     public DelegateModel OnMove;
     public DelegateModel OnFire;
+    public DelegateModel OnMoveMouse;
 
     void Awake()
     {
@@ -40,18 +41,16 @@ public class InputController : MonoBehaviour
             OnMove(null, moved);
         }
 
+        if (OnMoveMouse != null)
+            OnMoveMouse(null, new Mouse { Button = 0 });
+
         if (Input.GetButtonDown("Fire1") && OnFire != null)
         {
-            OnFire(null, 1);
+            OnFire(null, new Mouse { Button = 1 });
         }
         if (Input.GetButtonDown("Fire2") && OnFire != null)
         {
-            OnFire(null, 2);
-        }
-
-        if (Input.GetButtonDown("ShowLog"))
-        {
-            CombatLog.ShowLog();
+            OnFire(null, new Mouse { Button = 2 });
         }
     }
 
@@ -63,5 +62,23 @@ public class InputController : MonoBehaviour
             return value;
         }
         return 0;
+    }
+}
+
+public class Mouse
+{
+    public int Button;
+    public Vector3Int Position
+    {
+        get
+        {
+            Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            pos.z = 0;
+            var position = Floor.Instance.GetTileMapPosition(pos);
+
+            Debug.Log(position);
+
+            return position;
+        }
     }
 }

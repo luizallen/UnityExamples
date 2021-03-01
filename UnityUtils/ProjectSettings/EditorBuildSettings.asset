@@ -11,21 +11,12 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/UI/Home.unity
+    guid: 39cd3a054fe81ae47b53848ecd129e47
+  - enabled: 1
+    path: Assets/Scenes/Maps/FirstMap/FirstMap.unity
+    guid: f134e8a9d695b2d45b17e920bfb8fd44
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 26804920716d17a48b5580447ee7b00c,
       type: 2}

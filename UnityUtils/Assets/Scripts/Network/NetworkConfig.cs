@@ -2,7 +2,7 @@
 {
     public static class NetworkConfig
     {
-        public static string PlayerName;
+        public static string PlayerName = "TestPlayer";
         public static string ServerRegion;
 
         public static bool IsConnected = false;

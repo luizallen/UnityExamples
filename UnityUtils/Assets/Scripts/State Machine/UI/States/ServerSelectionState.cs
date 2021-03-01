@@ -1,13 +1,18 @@
 ﻿using Photon.Pun;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ServerSelectionState : MenuUIState
 {
     void Update()
     {
         if (StateMachine.Current.GetType() == typeof(ServerSelectionState)
-           &&  PhotonNetwork.IsConnectedAndReady)
+           && PhotonNetwork.IsConnectedAndReady) {
             StateMachine.LoadingPanel.Message.text = "Connected";
+            new WaitForSeconds(1);
+            SceneManager.LoadScene("FirstMap");
+        }
+            
     }
 
     public override void Enter()

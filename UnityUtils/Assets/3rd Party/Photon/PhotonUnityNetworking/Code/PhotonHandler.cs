@@ -185,7 +185,7 @@ namespace Photon.Pun
                 {
                     // Send all outgoing commands
                     Profiler.BeginSample("SendOutgoingCommands");
-                    doSend = PhotonNetwork.NetworkingClient.LoadBalancingPeer.SendOutgoingCommands();
+                    //doSend = PhotonNetwork.NetworkingClient.LoadBalancingPeer.SendOutgoingCommands();
                     sendCounter++;
                     Profiler.EndSample();
                 }

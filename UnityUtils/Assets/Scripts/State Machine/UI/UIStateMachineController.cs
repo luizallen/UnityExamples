@@ -23,6 +23,6 @@ public class UIStateMachineController : BaseStateMachine
 
     void Start()
     {
-        ChangeTo<LoadOpenWorldState>();
+        ChangeTo<LoginState>();
     }
 }

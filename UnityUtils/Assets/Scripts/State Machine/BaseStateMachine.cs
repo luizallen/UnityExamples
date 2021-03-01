@@ -2,6 +2,9 @@
 
 public class BaseStateMachine : MonoBehaviour
 {
+    public Transform Selector;
+    public TileLogic SelectedTile;
+
     public State Current { get { return _current; } }
     State _current;
 

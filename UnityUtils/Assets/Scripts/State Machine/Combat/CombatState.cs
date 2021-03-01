@@ -14,21 +14,8 @@ public class CombatState : State
 
         if (tile != null)
         {
-            MoveSelector(tile);
+            MoveSelector(tile, StateMachine);
         }
-    }
-
-    protected void MoveSelector(Vector3Int pos)
-    {
-        MoveSelector(Board.GetTile(pos));
-    }
-
-    protected void MoveSelector(TileLogic tile)
-    {
-        Selector.Instance.Tile = tile;
-        Selector.Instance.SpriteRenderer.sortingOrder = tile.ContentOrder;
-        Selector.Instance.transform.position = tile.WorldPos;
-        StateMachine.SelectedTile = tile;
     }
 
     protected IEnumerator AIMoveSelector(Vector3Int destination)

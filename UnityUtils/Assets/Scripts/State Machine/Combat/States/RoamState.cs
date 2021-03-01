@@ -31,13 +31,13 @@ public class RoamState : CombatState
 
     void OnFire(object sender, object args)
     {
-        int button = (int)args;
+        var mouse = (Mouse)args;
 
-        if (button == 1)
+        if (mouse.Button == 1)
         {
 
         }
-        else if (button == 2)
+        else if (mouse.Button == 2)
         {
             StateMachine.ChangeTo<ChooseActionState>();
         }

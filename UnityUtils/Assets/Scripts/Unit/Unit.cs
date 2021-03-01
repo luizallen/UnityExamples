@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
 public delegate void OnTurnBegin();
@@ -24,6 +25,7 @@ public class Unit : MonoBehaviour
     public AnimationController AnimationController;
     public OnTurnBegin OnTurnBegin;
     public Image HealthBar;
+    public TextMeshProUGUI PlayerName;
 
     public SpriteSwapper SpriteSwapper;
 

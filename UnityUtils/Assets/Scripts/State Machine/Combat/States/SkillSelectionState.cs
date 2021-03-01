@@ -9,7 +9,7 @@ public class SkillSelectionState : CombatUIState
     public override void Enter()
     {
         base.Enter();
-        MoveSelector(Turn.Unit.Tile);
+        MoveSelector(Turn.Unit.Tile, StateMachine);
         Index = 0;
 
         Inputs.OnMove += OnMove;
@@ -35,13 +35,13 @@ public class SkillSelectionState : CombatUIState
 
     void OnFire(object sender, object args)
     {
-        int button = (int)args;
+        var mouse = (Mouse)args;
 
-        if (button == 1)
+        if (mouse.Button == 1)
         {
             ActionButtons();
         }
-        else if (button == 2)
+        else if (mouse.Button == 2)
         {
             StateMachine.LeftCharacterPanel.Hide();
             StateMachine.ChangeTo<ChooseActionState>();

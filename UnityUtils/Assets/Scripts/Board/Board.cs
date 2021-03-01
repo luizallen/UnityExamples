@@ -132,8 +132,8 @@ public class Board : MonoBehaviour
 
                 if (next == null || next.Distance <= tile.Distance + 1)
                     continue;
-                
-                if(searchType(tile, next))
+
+                if (searchType(tile, next))
                 {
                     next.Prev = tile;
                     checkNext.Enqueue(next);

@@ -29,9 +29,9 @@ public class JobAdvanceState : CombatState
 
     void OnFire(object sender, object args)
     {
-        var button = (int)args;
+        var mouse = (Mouse)args;
 
-        if(button == 1)
+        if (mouse.Button == 1)
         {
             StateMachine.JobAdvancePanel.JobChange();
             StateMachine.ChangeTo<ChooseActionState>();

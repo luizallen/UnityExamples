@@ -10,6 +10,8 @@ public class NetworkController : MonoBehaviourPunCallbacks
 
     void Awake()
     {
+        PhotonNetwork.Disconnect();
+
         Instance = this;   
         PhotonNetwork.AutomaticallySyncScene = true;        
     }
@@ -41,7 +43,6 @@ public class NetworkController : MonoBehaviourPunCallbacks
     public override void OnDisconnected(DisconnectCause cause)
     {
         NetworkConfig.IsConnected = false;
-        PhotonNetwork.Disconnect();
         Debug.Log("Disconnected");
     }
 

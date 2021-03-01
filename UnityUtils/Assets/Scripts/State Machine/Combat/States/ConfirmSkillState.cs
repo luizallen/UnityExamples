@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 public class ConfirmSkillState : CombatState
@@ -35,9 +34,9 @@ public class ConfirmSkillState : CombatState
 
     void OnFire(object sender, object args)
     {
-        int button = (int)args;
+        var mouse = (Mouse)args;
 
-        if (button == 1)
+        if (mouse.Button == 1)
         {
             if (Turn.Skill.ValidadeTarget(Turn.Targets))
             {
@@ -47,7 +46,7 @@ public class ConfirmSkillState : CombatState
             else
                 Debug.Log("No unit would be affected");
         }
-        else if (button == 2)
+        else if (mouse.Button == 2)
         {
             StateMachine.ChangeTo<SkillTargetState>();
         }

@@ -45,14 +45,14 @@ public class SkillTargetState : CombatState
 
     void OnFire(object sender, object args)
     {
-        int button = (int)args;
+        var mouse = (Mouse)args;
 
-        if (button == 1 && (_directionOriented || _selectedTiles.Contains(Selector.Instance.Tile)))
+        if (mouse.Button == 1 && (_directionOriented || _selectedTiles.Contains(Selector.Instance.Tile)))
         {
             Turn.Targets = _selectedTiles;
             StateMachine.ChangeTo<ConfirmSkillState>();
         }
-        else if (button == 2)
+        else if (mouse.Button == 2)
         {
             if (Turn.IsItem != null)
                 StateMachine.ChangeTo<ItemSelectionState>();

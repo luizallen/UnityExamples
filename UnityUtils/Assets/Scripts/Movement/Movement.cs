@@ -16,30 +16,44 @@ public class Movement : MonoBehaviour
         _sR = GetComponentInChildren<SpriteRenderer>();
     }
 
-    public IEnumerator Move(List<TileLogic> path)
+    public IEnumerator Move(TileLogic currentTile, TileLogic fowardTile, Unit unit)
     {
-        _actualTile = Turn.Unit.Tile;
+        var path = CreatePath(currentTile, fowardTile);
+        yield return Move(path, unit);
+    }
+
+    public IEnumerator Move(TileLogic tileLogic, Unit unit)
+    {
+        var path = new List<TileLogic> { tileLogic };
+        yield return Move(path, unit);
+    }
+
+    public IEnumerator Move(List<TileLogic> path, Unit unit)
+    {
+        _actualTile = unit.Tile;
         _actualTile.content = null;
 
         for (int i = 0; i < path.Count; i++)
         {
             var to = path[i];
 
-            Turn.Unit.Direction = _actualTile.GetDirection(to);
+            unit.Direction = _actualTile.GetDirection(to);
             
             if (_actualTile.Floor != to.Floor)
             {
-                var duration = Turn.Unit.AnimationController.Jump();
+                var duration = unit.AnimationController.Jump();
                 yield return StartCoroutine(Jump(to, duration));
             }
             else
             {
-                Turn.Unit.AnimationController.Walk();
+                unit.AnimationController.Walk();
                 yield return StartCoroutine(Walk(to));
             }
+
+            unit.Tile = to;
         }
 
-        Turn.Unit.AnimationController.Idle();
+        unit.AnimationController.Idle();
     }
 
     IEnumerator Walk(TileLogic to)
@@ -85,14 +99,36 @@ public class Movement : MonoBehaviour
     }
 
     public virtual bool ValidateMovement(TileLogic from, TileLogic to)
+        => IsValidMovement(from, to, Turn.Unit.GetStat(StatEnum.MOV));
+
+    public virtual bool ValidateGlobalMovement(TileLogic from, TileLogic to)
+        => IsValidMovement(from, to, 99);
+
+    bool IsValidMovement(TileLogic from, TileLogic to, int movement)
     {
         to.Distance = from.Distance + 1;
 
-        if (to.content != null ||
-            to.Distance > Turn.Unit.GetStat(StatEnum.MOV) ||
-            Mathf.Abs(from.Floor.Height - to.Floor.Height) > 1)
+        if (to.content != null
+            || to.Distance > movement
+            || Mathf.Abs(from.Floor.Height - to.Floor.Height) > 1)
             return false;
 
         return true;
+    }
+
+    private List<TileLogic> CreatePath(TileLogic currentTile, TileLogic fowardTile)
+    {
+        var path = new List<TileLogic>();
+
+        var tile = fowardTile;
+
+        while (tile != currentTile)
+        {
+            path.Add(tile);
+            tile = tile.Prev;
+        }
+
+        path.Reverse();
+        return path;
     }
 }

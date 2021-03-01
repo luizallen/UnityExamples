@@ -1,14 +1,14 @@
-﻿using Photon.Pun;
+﻿using Assets.Scripts.Network;
+using Photon.Pun;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class OpenWorldMapLoader : MonoBehaviour
 {
     public Unit UnitPrefab;
-
-    public List<UnitSerialized> SerializedUnits;
-
     public static OpenWorldMapLoader Instance;
+
+    public List<Unit> InstantiatedUnits;
 
     GameObject _holder;
 
@@ -24,17 +24,18 @@ public class OpenWorldMapLoader : MonoBehaviour
         _holder.transform.parent = Board.Instance.transform;
     }
 
-    public void CreateUnits()
+    public Unit CreateUnit(string playerName)
     {
-        foreach (var serializedUnit in SerializedUnits)
-        {
-            CreateUnit(serializedUnit);
-        }
-    }
+        var initialPosition = new Vector3Int(-5, -5, 0);
 
-    public Unit CreateUnit(UnitSerialized serialized)
-    {
-        TileLogic tile = Board.GetTile(serialized.Position);
+        TileLogic tile = Board.GetTile(initialPosition);
+
+        //var instantiatedUnit = PhotonNetwork.Instantiate(UnitPrefab.name,
+        //                        tile.WorldPos,
+        //                        Quaternion.identity,
+        //                        0);
+
+        //var unit = instantiatedUnit.GetComponent<Unit>();
 
         var unit = Instantiate(UnitPrefab,
                                 tile.WorldPos,
@@ -42,12 +43,11 @@ public class OpenWorldMapLoader : MonoBehaviour
                                 _holder.transform);
 
         unit.Tile = tile;
-        unit.name = serialized.CharacterName;
-        unit.Faction = serialized.Faction;
-        unit.PlayerType = serialized.Playertype;
-        tile.content = unit.gameObject;
+        unit.name = playerName;
+        unit.PlayerType = PlayerType.Human;
+        unit.PlayerName.text = NetworkConfig.PlayerName;
 
-        CombatStateMachineController.Instance.Units.Add(unit);
+        OpenWorldStateMachine.Instance.Player = unit;
 
         var jumper = unit.transform.Find("Jumper");
         jumper.GetComponentInChildren<SpriteRenderer>().sortingOrder = unit.Tile.ContentOrder;

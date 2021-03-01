@@ -1,6 +1,8 @@
 ﻿public class OpenWorldState : State
 {
-    protected OpenWorldStateMachine StateMachine { get { return OpenWorldStateMachine.Instance; } }
+    protected OpenWorldStateMachine StateMachine => OpenWorldStateMachine.Instance;
 
-    protected Board Board { get { return Board.Instance; } }
+    protected Board Board => Board.Instance;
+
+    protected Unit Unit => StateMachine.Player;
 }
